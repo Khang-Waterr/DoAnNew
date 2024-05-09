@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class DoAnQuanLyCuaHang {
    public static void main(String[] args) {
          System.out.println("Hello World!");
-         new KhachHangGUI().setVisible(true);
+         KhachHangGUI khachhangGUI = new KhachHangGUI();
+         khachhangGUI.setVisible(true);
          
     }
     
