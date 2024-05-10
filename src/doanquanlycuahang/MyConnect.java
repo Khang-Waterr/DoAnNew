@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyConnect {
-    public Connection con = null;
+    public static Connection conn = null;
     public String url = "jdbc:oracle:thin:@localhost:1521:orcl";
     public String uname = "QLCH";
     public String upass = "QLCH";
@@ -13,8 +13,8 @@ public class MyConnect {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             System.out.println("Oracle JDBC Driver Registered!");
-            con = DriverManager.getConnection(url, uname, upass);
-            if (con != null) { 
+            conn = DriverManager.getConnection(url, uname, upass);
+            if (conn != null) { 
                 System.out.println("Connected to the database"); 
             } 
             else { 
