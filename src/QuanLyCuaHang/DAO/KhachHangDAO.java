@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class KhachHangDAO {
 
-    public ArrayList<KhachHangDTO> getListKhachHangDTO() {
+    public ArrayList<KhachHangDTO> getListKhachHang() {
         try {
             String sql = "SELECT * FROM khachhang";
             Statement stat = MyConnect.conn.createStatement();
@@ -31,7 +31,7 @@ public class KhachHangDAO {
         return null;
     }
 
-    public KhachHangDTO getKhachHangDTO(int maKH) {
+    public KhachHangDTO getKhachHang(int maKH) {
         KhachHangDTO kh = null;
         try {
             String sql = "SELECT * FROM khachhang WHERE MaKH=?";
@@ -52,7 +52,7 @@ public class KhachHangDAO {
         return kh;
     }
 
-    public boolean addKhachHangDTO(KhachHangDTO kh) {
+    public boolean addKhachHang(KhachHangDTO kh) {
         boolean result = false;
         try {
             String sql = "INSERT INTO khachhang VALUES(?,?,?,?,?)";
@@ -69,7 +69,7 @@ public class KhachHangDAO {
         return result;
     }
 
-    public boolean deleteKhachHangDTO(int maKH) {
+    public boolean deleteKhachHang(int maKH) {
         boolean result = false;
         try {
             String sql = "UPDATE khachhang SET TinhTrang=0 WHERE MaKH=?";
@@ -82,7 +82,7 @@ public class KhachHangDAO {
         return result;
     }
 
-    public boolean updateKhachHangDTO(int maKH, KhachHangDTO kh) {
+    public boolean updateKhachHang(int maKH, KhachHangDTO kh) {
         boolean result = false;
         try {
             String sql = "UPDATE khachhang SET Ho=?, Ten=?, GioiTinh=? WHERE MaKH=?";
