@@ -55,21 +55,22 @@ public class KhachHangBUS {
         return dskh;
     }
 
-    public boolean themKhachHang(String ho, String ten, String gioiTinh) {
+    public boolean themKhachHang(int makh, String ho, String ten, String gioitinh) {
+        //Kiểm tra đã nhập tên chưa
         if (ten.trim().equals("")) {
             new MyDialog("Không được để trống tên!", MyDialog.ERROR_DIALOG);
             return false;
         }
-        if (gioiTinh.equals("")) {
-            new MyDialog("Hãy chọn giới tính!", MyDialog.ERROR_DIALOG);
+        //Kiểm tra nhập giới tính chưa
+        if (gioitinh.trim().equals("")) {
+            new MyDialog("Hãy nhập giới tính!", MyDialog.ERROR_DIALOG);
             return false;
         }
-        KhachHangDTO kh = new KhachHangDTO();
-        kh.setHo(ho);
-        kh.setTen(ten);
-        kh.setGioiTinh(gioiTinh);
-        kh.setTongChiTieu(0);
+        //Tạo biến khách hàng để thêm
+        KhachHangDTO kh = new KhachHangDTO(makh, ho, ten, gioitinh, 0);
+        //Thêm và tạo cờ kiểm tra đã thêm thành công hay chưa
         boolean flag = khachHangDAO.addKhachHang(kh);
+        //Kiểm tra cờ để xuất thông báo phù hợp
         if (flag) {
             new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
         } else {
@@ -83,7 +84,7 @@ public class KhachHangBUS {
             new MyDialog("Không được để trống tên!", MyDialog.ERROR_DIALOG);
             return false;
         }
-        if (gioiTinh.equals("")) {
+        if (gioiTinh.trim().equals("")) {
             new MyDialog("Hãy chọn giới tính!", MyDialog.ERROR_DIALOG);
             return false;
         }
