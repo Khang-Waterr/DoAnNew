@@ -72,7 +72,7 @@ public class KhachHangDAO {
     public boolean deleteKhachHang(int maKH) {
         boolean result = false;
         try {
-            String sql = "UPDATE khachhang SET TinhTrang=0 WHERE MaKH=?";
+            String sql = "Delete from khachhang WHERE MaKH=?";
             PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
             prep.setInt(1, maKH);
             result = prep.executeUpdate() > 0;

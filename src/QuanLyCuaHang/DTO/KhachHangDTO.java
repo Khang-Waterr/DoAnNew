@@ -1,11 +1,11 @@
 package QuanLyCuaHang.DTO;
 
 public class KhachHangDTO {
-    private int maKH;
-    private String ho;
-    private String ten;
-    private String gioiTinh;
-    private int tongChiTieu;
+    public int maKH;
+    public String ho;
+    public String ten;
+    public String gioiTinh;
+    public int tongChiTieu;
 
     public KhachHangDTO() {
     }
