@@ -56,16 +56,18 @@ public class KhachHangBUS {
     }
 
     public boolean themKhachHang(int makh, String ho, String ten, String gioitinh) {
+        //Kiểm tra nhập mã chưa
+        if (gioitinh.trim().equals("")) {
+            new MyDialog("Không được để trống mã!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
+
         //Kiểm tra đã nhập tên chưa
         if (ten.trim().equals("")) {
             new MyDialog("Không được để trống tên!", MyDialog.ERROR_DIALOG);
             return false;
         }
-        //Kiểm tra nhập giới tính chưa
-        if (gioitinh.trim().equals("")) {
-            new MyDialog("Hãy nhập giới tính!", MyDialog.ERROR_DIALOG);
-            return false;
-        }
+  
         //Tạo biến khách hàng để thêm
         KhachHangDTO kh = new KhachHangDTO(makh, ho, ten, gioitinh, 0);
         //Thêm và tạo cờ kiểm tra đã thêm thành công hay chưa

@@ -18,7 +18,8 @@ public class MyConnect {
                 System.out.println("Connected to the database"); 
             } 
             else { 
-                System.out.println("Failed to make connection!"); }
+                System.out.println("Failed to make connection!"); 
+            }
         } catch (ClassNotFoundException e) {
             System.out.println("Oracle JDBC Driver not found!");
             e.printStackTrace();

@@ -12,186 +12,69 @@ public class MyDialog extends JDialog {
     public final static int SUCCESS_DIALOG = 2;
     public final static int INFO_DIALOG = 3;
     public final static int WARNING_DIALOG = 4;
-
-    public MyDialog(String content, int type) {
-        DoAnQuanLyCuaHang.changLNF("Windows");
-        this.content = content;
-        this.type = type;
-        addControls();
-        addEvents();
-        showWindow();
-    }
-
-    JPanel pnMain, pnTop, pnBottom, pnButton;
-    JLabel lblIcon, lblContent, lblClose;
-    JButton btnOK, btnCancel;
-    final ImageIcon iconError = new ImageIcon("image/error.png");
-    final ImageIcon iconSuccess = new ImageIcon("image/success.png");
-    final ImageIcon iconInfo = new ImageIcon("image/info.png");
-    final ImageIcon iconWarning = new ImageIcon("image/warn.png");
-
-    public void addControls() {
-        Container con = getContentPane();
-
-        pnMain = new JPanel();
-        pnTop = new JPanel();
-        pnBottom = new JPanel();
-        pnButton = new JPanel();
-        lblIcon = new JLabel();
-        lblContent = new JLabel(content);
-        btnOK = new JButton("OK");
-        btnCancel = new JButton("Cancel");
-
-        pnMain.setLayout(new BoxLayout(pnMain, BoxLayout.Y_AXIS));
-        pnTop.setLayout(new FlowLayout());
-        pnBottom.setLayout(new FlowLayout());
-        pnButton.setLayout(new FlowLayout());
-
-        pnMain.setBackground(Color.WHITE);
-        pnTop.setBackground(Color.WHITE);
-        pnBottom.setBackground(Color.WHITE);
-        pnButton.setBackground(Color.WHITE);
-
-        lblContent.setFont(new Font("", Font.PLAIN, 18));
-        lblContent.setHorizontalAlignment(JTextField.CENTER);
-        lblContent.setForeground(Color.BLACK);
-        lblContent.setText("<html>" +
-                "<div style='text-align: center; width:300px'>" +
-                    content +
-                "</div></html>");
-
-        btnOK.setPreferredSize(new Dimension(60, 30));
-        btnCancel.setPreferredSize(btnOK.getPreferredSize());
-
-        pnTop.add(lblIcon, BorderLayout.CENTER);
-        pnBottom.add(lblContent);
-        pnButton.add(btnOK);
-
-        JPanel pnHeader = new JPanel();
-        pnHeader.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        pnHeader.setPreferredSize(new Dimension(400, 25));
-        lblClose = new JLabel(new ImageIcon("image/icons8_x_24px.png"));
-        lblClose.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        pnHeader.add(lblClose);
-
-        pnMain.add(pnHeader);
-        pnMain.add(pnTop);
-        pnMain.add(pnBottom);
-        pnMain.add(pnButton);
-
-        JPanel pnFooter = new JPanel();
-        pnFooter.setPreferredSize(new Dimension(400, 20));
-        pnMain.add(pnFooter);
-
-        con.add(pnMain);
-
-        Color backgroundHeader = new Color(0);
-        switch (type) {
-            case ERROR_DIALOG:
-                backgroundHeader = new Color(220, 53, 69);
-                lblIcon.setIcon(iconError);
-                break;
-            case SUCCESS_DIALOG:
-                backgroundHeader = new Color(40, 167, 69);
-                lblIcon.setIcon(iconSuccess);
-                break;
-            case INFO_DIALOG:
-                backgroundHeader = new Color(0, 123, 255);
-                lblIcon.setIcon(iconInfo);
-                break;
-            case WARNING_DIALOG:
-                backgroundHeader = new Color(255, 193, 7);
-                lblIcon.setIcon(iconWarning);
-                pnButton.add(btnCancel);
-                break;
-        }
-
-        pnMain.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.WHITE));
-
-        btnOK.setPreferredSize(new Dimension(80, 30));
-        btnCancel.setPreferredSize(btnOK.getPreferredSize());
-        pnHeader.setBackground(backgroundHeader);
-    }
-
-    public void addEvents() {
-        lblClose.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                closeDialog();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-        });
-        btnOK.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                closeDialog();
-                action = OK_OPTION;
-            }
-        });
-        btnCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                closeDialog();
-                action = CANCEL_OPTION;
-            }
-        });
-        pnMain.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                int x = e.getXOnScreen();
-                int y = e.getYOnScreen();
-                Move(x, y);
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-                xMouse = e.getX();
-                yMouse = e.getY();
-            }
-        });
-    }
-
-    int xMouse, yMouse;
-
-    public void Move(int x, int y) {
-        this.setLocation(x - xMouse, y - yMouse);
-    }
-
-    public int action;
+    
+    private int action;
     public final static int OK_OPTION = 1;
     public final static int CANCEL_OPTION = 2;
-
-    public void closeDialog() {
-        this.setVisible(false);
-    }
-
+    
     public int getAction() {
         return action;
     }
 
-    public void showWindow() {
-        this.setUndecorated(true);
-        this.setSize(400, 250);
-        this.setLocationRelativeTo(null);
-        this.setAlwaysOnTop(true);
-        this.setModal(true);
-        this.setBackground(Color.WHITE);
-        this.setVisible(true);
-        getRootPane().setDefaultButton(btnOK);
+    public MyDialog(String content, int type) {
+        this.content = content;
+        this.type = type;
+        action();
+    }
+    public void action(){
+        if (this.type == 1){
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+            JOptionPane.showMessageDialog(frame,content,"Error",JOptionPane.ERROR_MESSAGE);
+        } else if (this.type == 2){
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+            JOptionPane.showMessageDialog(frame,content,"Success",JOptionPane.INFORMATION_MESSAGE);
+        } else if (this.type == 3){
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+            JOptionPane.showMessageDialog(frame,content,"Info",JOptionPane.INFORMATION_MESSAGE);
+        } else if (this.type == 4){
+            createWindow(content);
+        }
+    }
+    
+    private void createWindow(String string) {
+        JFrame frame = new JFrame("Swing Tester");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        createUI(frame);
+        frame.setSize(560, 200);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+    
+    private void createUI(final JFrame frame){
+        JPanel panel = new JPanel();
+        LayoutManager layout = new FlowLayout();
+        panel.setLayout(layout);
+        JButton button = new JButton("Xác nhận");
+        final JLabel label = new JLabel();
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = JOptionPane.showConfirmDialog(frame,"string","Xác nhận", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                
+                if(result == JOptionPane.YES_OPTION){
+                    label.setText("Bạn chọn: Yes");
+                    action = OK_OPTION;
+                }else if (result == JOptionPane.NO_OPTION){
+                    label.setText("Bạn chọn : No");
+                    action = CANCEL_OPTION;
+                }
+            }
+        });
+        
+        panel.add(button);
+        panel.add(label);
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
     }
 }
+
+
