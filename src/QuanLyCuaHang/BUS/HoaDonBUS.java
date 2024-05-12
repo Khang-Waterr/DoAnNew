@@ -3,7 +3,6 @@ package QuanLyCuaHang.BUS;
 import QuanLyCuaHang.DAO.HoaDonDAO;
 import QuanLyCuaHang.DTO.HoaDonDTO;
 import doanquanlycuahang.MyDialog;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +17,7 @@ public class HoaDonBUS {
         return listHoaDon;
     }
 
+    
     public void luuHoaDon(int maKH, String nhanVien, int tongTien, String ghiChu) {
         HoaDonDTO hd = new HoaDonDTO();
         String[] arrNV = nhanVien.split(" - ");
@@ -30,6 +30,7 @@ public class HoaDonBUS {
         hoaDonDAO.addHoaDon(hd);
     }
 
+    
     public int getMaHoaDonMoiNhat() {
         return hoaDonDAO.getMaHoaDonMoiNhat();
     }
@@ -43,6 +44,7 @@ public class HoaDonBUS {
         return null;
     }
 
+    
     public ArrayList<HoaDonDTO> getListHoaDonTheoGia(String min, String max) {
         try {
             int minPrice = Integer.parseInt(min);
@@ -59,6 +61,7 @@ public class HoaDonBUS {
         return null;
     }
 
+    
     public ArrayList<HoaDonDTO> getListHoaDonTheoNgay(String min, String max) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

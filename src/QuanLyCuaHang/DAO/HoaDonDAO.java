@@ -29,6 +29,7 @@ public class HoaDonDAO {
         return dshd;
     }
 
+    
     public boolean addHoaDon(HoaDonDTO hd) {
         boolean result = false;
         try {
@@ -50,6 +51,7 @@ public class HoaDonDAO {
         return result;
     }
 
+    //-1 là lấy thất bại
     public int getMaHoaDonMoiNhat() {
         try {
             String sql = "SELECT MAX(maHD) FROM hoadon";
@@ -63,6 +65,7 @@ public class HoaDonDAO {
         return -1;
     }
 
+    
     public ArrayList<HoaDonDTO> getListHoaDon(Date dateMin, Date dateMax) {
         try {
             String sql = "SELECT * FROM hoadon WHERE NgayLap BETWEEN CAST(? AS DATE) AND CAST(? AS DATE)";

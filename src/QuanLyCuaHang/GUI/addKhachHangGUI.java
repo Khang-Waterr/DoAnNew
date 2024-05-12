@@ -16,10 +16,8 @@ public class addKhachHangGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLMa = new javax.swing.JLabel();
         jLHo = new javax.swing.JLabel();
         jLTen = new javax.swing.JLabel();
-        jTMa = new javax.swing.JTextField();
         jTHo = new javax.swing.JTextField();
         jTTen = new javax.swing.JTextField();
         jBLuu = new javax.swing.JButton();
@@ -29,9 +27,6 @@ public class addKhachHangGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Thêm Khách Hàng");
-
-        jLMa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLMa.setText("Mã khách:");
 
         jLHo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLHo.setText("Họ:");
@@ -61,37 +56,33 @@ public class addKhachHangGUI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLHeader)
                 .addGap(94, 94, 94))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLGioiTinh)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLMa)
-                                    .addComponent(jLHo))
-                                .addComponent(jLTen)))
-                        .addGap(49, 49, 49)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLHo)
+                                    .addGap(91, 91, 91))
+                                .addComponent(jLTen))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLGioiTinh)
+                                .addGap(49, 49, 49)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTTen, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(jTTen)
                             .addComponent(jTHo)
-                            .addComponent(jTMa)
-                            .addComponent(jTGioiTinh)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jBLuu)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                            .addComponent(jTGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBLuu)
+                        .addGap(129, 129, 129))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLHeader)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLMa)
-                    .addComponent(jTMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLHo)
@@ -106,7 +97,7 @@ public class addKhachHangGUI extends javax.swing.JFrame {
                     .addComponent(jLGioiTinh))
                 .addGap(18, 18, 18)
                 .addComponent(jBLuu)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,10 +105,10 @@ public class addKhachHangGUI extends javax.swing.JFrame {
 
     private void jBLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLuuActionPerformed
         // TODO add your handling code here:
-        flag = khBUS.themKhachHang(jTMa.getText(),jTHo.getText(),jTTen.getText(), jTGioiTinh.getText());
+        flag = khBUS.themKhachHang(jTHo.getText(),jTTen.getText(), jTGioiTinh.getText());
         if (flag == true) {
                 KhachHangGUI.AddRowToJTable(new Object[]{
-                    jTMa.getText(),
+                    khBUS.getMaKhachHangMoiNhat(),
                     jTHo.getText(),
                     jTTen.getText(),
                     jTGioiTinh.getText(),
@@ -164,11 +155,9 @@ public class addKhachHangGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLGioiTinh;
     private javax.swing.JLabel jLHeader;
     private javax.swing.JLabel jLHo;
-    private javax.swing.JLabel jLMa;
     private javax.swing.JLabel jLTen;
     private javax.swing.JTextField jTGioiTinh;
     private javax.swing.JTextField jTHo;
-    private javax.swing.JTextField jTMa;
     private javax.swing.JTextField jTTen;
     // End of variables declaration//GEN-END:variables
 }

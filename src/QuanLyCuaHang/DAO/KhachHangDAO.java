@@ -109,4 +109,17 @@ public class KhachHangDAO {
         }
         return result;
     }
+    
+    public int getMaKhachHangMoiNhat() {
+        try {
+            String sql = "SELECT MAX(MaKH) FROM khachhang";
+            Statement st = MyConnect.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next())
+                return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

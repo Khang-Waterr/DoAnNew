@@ -7,18 +7,18 @@ import java.util.ArrayList;
 
 public class KhachHangBUS {
 
-    public ArrayList<KhachHangDTO> listKhachHang = new ArrayList();
+    public ArrayList<KhachHangDTO> listKhachHang = new ArrayList<>();
     public KhachHangDAO khachHangDAO = new KhachHangDAO();
 
     public ArrayList<KhachHangDTO> getListKhachHang() {
         this.listKhachHang = khachHangDAO.getListKhachHang();
         return listKhachHang;
     }
-
+    
     
     public ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa) {
         tuKhoa = tuKhoa.toLowerCase();
-        ArrayList<KhachHangDTO> dskh = new ArrayList<>();
+        ArrayList<KhachHangDTO> dskh = new ArrayList<KhachHangDTO>();
         for (KhachHangDTO kh : listKhachHang) {
             String makh = Integer.toString(kh.getMaKH());
             String ho = kh.getHo().toLowerCase();
@@ -31,11 +31,16 @@ public class KhachHangBUS {
         return dskh;
     }
     
+    public int getMaKhachHangMoiNhat(){
+        return khachHangDAO.getMaKhachHangMoiNhat();
+    }
     
-    public boolean themKhachHang(String makh, String ho, String ten, String gioitinh) {
-        //Kiểm tra đã nhập mã chưa
-        if (makh.trim().equals("")) {
-            new MyDialog("Không được để trống mã!", MyDialog.ERROR_DIALOG);
+    
+    public boolean themKhachHang(String ho, String ten, String gioitinh) {
+        //Kiểm tra lấy mã được chưa
+        int result = khachHangDAO.getMaKhachHangMoiNhat();
+        if (result == -1) {
+            new MyDialog("Lấy mã thất bại!", MyDialog.ERROR_DIALOG);
             return false;
         }
         
@@ -45,17 +50,8 @@ public class KhachHangBUS {
             return false;
         }
         
-        //Kiểm tra mã nhập phải số không
-        try{
-            int number = Integer.parseInt(makh);
-        }
-        catch (NumberFormatException ex){
-            new MyDialog("Mã không hợp lệ!", MyDialog.ERROR_DIALOG);
-            return false;
-        }
-        
         //Tạo biến khách hàng để thêm
-        KhachHangDTO kh = new KhachHangDTO(Integer.parseInt(makh), ho, ten, gioitinh, 0);
+        KhachHangDTO kh = new KhachHangDTO(result+1, ho, ten, gioitinh, 0);
         
         //Thêm và tạo cờ kiểm tra đã thêm thành công hay chưa
         boolean flag = khachHangDAO.addKhachHang(kh);
@@ -69,6 +65,7 @@ public class KhachHangBUS {
         return flag;
     }
 
+    
     public boolean suaKhachHang(String makh, String ho, String ten, String gioiTinh) { 
         
         //Kiểm tra đã nhập tên chưa
@@ -93,6 +90,7 @@ public class KhachHangBUS {
         return flag;
     }
 
+    
     public boolean xoaKhachHang(int maKH) {
         boolean flag = false;
         
@@ -108,4 +106,5 @@ public class KhachHangBUS {
         }
         return flag;
     }
+    
 }
