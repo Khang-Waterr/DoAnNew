@@ -6,15 +6,17 @@ package QuanLyCuaHang.GUI;
 
 import QuanLyCuaHang.BUS.KhachHangBUS;
 import QuanLyCuaHang.DTO.KhachHangDTO;
+import doanquanlycuahang.MyDialog;
 import javax.swing.table.DefaultTableModel;
 
 
 public class KhachHangGUI extends javax.swing.JFrame {
-    KhachHangBUS khBUS = new KhachHangBUS();
-    KhachHangDTO khDTO = new KhachHangDTO(); //Biến này đại diện cho khách hàng được chọn trong table
+    public KhachHangBUS khBUS = new KhachHangBUS();
+    public static KhachHangDTO khDTO = new KhachHangDTO(); //Biến này đại diện cho khách hàng được chọn trong table
     
     public KhachHangGUI() {
         initComponents();
+        jTKhachHang.setRowHeight(30);
         upDTB();
     }
     
@@ -25,7 +27,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         khBUS.getListKhachHang();
         
         for (KhachHangDTO khtemp : khBUS.listKhachHang){
-            RecordTable.addRow(new Object[]{Integer.toString(khtemp.maKH),khtemp.ho,khtemp.ten,khtemp.gioiTinh});
+            RecordTable.addRow(new Object[]{Integer.toString(khtemp.maKH),khtemp.ho,khtemp.ten,khtemp.gioiTinh,khtemp.tongChiTieu});
         }
     }
         
@@ -74,17 +76,9 @@ public class KhachHangGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã", "Họ", "Tên", "Giới tính"
+                "Mã", "Họ", "Tên", "Giới tính", "Chi tiêu"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jTKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTKhachHangMouseClicked(evt);
@@ -94,6 +88,11 @@ public class KhachHangGUI extends javax.swing.JFrame {
 
         jBSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fixicon.png"))); // NOI18N
         jBSua.setText(" Sửa");
+        jBSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSuaActionPerformed(evt);
+            }
+        });
 
         jBXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delicon.png"))); // NOI18N
         jBXoa.setText(" Xóa");
@@ -173,9 +172,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPContentLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jBTimkiem))
+                    .addComponent(jBTimkiem)
                     .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBThem)
@@ -363,8 +360,12 @@ public class KhachHangGUI extends javax.swing.JFrame {
 
     private void jBXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBXoaActionPerformed
         // TODO add your handling code here:
-        khBUS.xoaKhachHang(khDTO.maKH);
-        upDTB();
+        if (khDTO.ten == null){
+            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
+        } else {
+            khBUS.xoaKhachHang(khDTO.maKH);
+            upDTB();
+        }
     }//GEN-LAST:event_jBXoaActionPerformed
 
     private void jBThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBThemActionPerformed
@@ -385,12 +386,37 @@ public class KhachHangGUI extends javax.swing.JFrame {
         khDTO.ho = (RecordTable.getValueAt(SelectedRows, 1).toString());
         khDTO.ten = (RecordTable.getValueAt(SelectedRows, 2).toString());
         khDTO.gioiTinh = (RecordTable.getValueAt(SelectedRows, 3).toString());
+        khDTO.tongChiTieu = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 4).toString()));
         
     }//GEN-LAST:event_jTKhachHangMouseClicked
 
     private void jBTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTimkiemActionPerformed
         // TODO add your handling code here:
+        if(txtTimkiem.getText().trim().equals("")){
+            upDTB();
+        } else{
+           upDTB();
+           khBUS.listKhachHang = khBUS.timKiemKhachHang(txtTimkiem.getText());
+           DefaultTableModel RecordTable = (DefaultTableModel)jTKhachHang.getModel();
+           RecordTable.setRowCount(0);
+           for (KhachHangDTO khtemp : khBUS.listKhachHang){
+            RecordTable.addRow(new Object[]{Integer.toString(khtemp.maKH),khtemp.ho,khtemp.ten,khtemp.gioiTinh,khtemp.tongChiTieu});
+           }
+        }   
     }//GEN-LAST:event_jBTimkiemActionPerformed
+
+    private void jBSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSuaActionPerformed
+        // TODO add your handling code here:
+        if (khDTO.ten == null){
+            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
+        } else {
+            updateKhachHangGUI updateFrame = new updateKhachHangGUI();
+            updateFrame.setVisible(true);
+            updateFrame.pack();
+            updateFrame.setLocationRelativeTo(null);
+            updateFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        }
+    }//GEN-LAST:event_jBSuaActionPerformed
 
     /**
      * @param args the command line arguments

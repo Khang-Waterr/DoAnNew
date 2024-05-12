@@ -15,36 +15,37 @@ public class KhachHangBUS {
         return listKhachHang;
     }
 
-    public ArrayList<KhachHangDTO> timKiemKhachHang(String txtMin, String txtMax) {
-        if (txtMax.trim().equals("") && txtMin.trim().equals(""))
-            return listKhachHang;
-        try {
-            ArrayList<KhachHangDTO> dskh = new ArrayList<>();
-            txtMin = txtMin.replace(",", "");
-            txtMax = txtMax.replace(",", "");
-            int min = Integer.parseInt(txtMin);
-            int max = Integer.parseInt(txtMax);
-            for (KhachHangDTO kh : listKhachHang) {
-                if (kh.getTongChiTieu() >= min && kh.getTongChiTieu() <= max) {
-                    dskh.add(kh);
-                }
-            }
-            return dskh;
-        } catch (Exception e) {
-            new MyDialog("Hãy nhập giá trị nguyên phù hợp!", MyDialog.ERROR_DIALOG);
-        }
-        return null;
-    }
+//    public ArrayList<KhachHangDTO> timKiemKhachHang(String txtMin, String txtMax) {
+//        if (txtMax.trim().equals("") && txtMin.trim().equals(""))
+//            return listKhachHang;
+//        try {
+//            ArrayList<KhachHangDTO> dskh = new ArrayList<>();
+//            txtMin = txtMin.replace(",", "");
+//            txtMax = txtMax.replace(",", "");
+//            int min = Integer.parseInt(txtMin);
+//            int max = Integer.parseInt(txtMax);
+//            for (KhachHangDTO kh : listKhachHang) {
+//                if (kh.getTongChiTieu() >= min && kh.getTongChiTieu() <= max) {
+//                    dskh.add(kh);
+//                }
+//            }
+//            return dskh;
+//        } catch (Exception e) {
+//            new MyDialog("Hãy nhập giá trị nguyên phù hợp!", MyDialog.ERROR_DIALOG);
+//        }
+//        return null;
+//    }
 
     
     public ArrayList<KhachHangDTO> timKiemKhachHang(String tuKhoa) {
         tuKhoa = tuKhoa.toLowerCase();
         ArrayList<KhachHangDTO> dskh = new ArrayList<>();
         for (KhachHangDTO kh : listKhachHang) {
+            String makh = Integer.toString(kh.getMaKH());
             String ho = kh.getHo().toLowerCase();
             String ten = kh.getTen().toLowerCase();
             String gioiTinh = kh.getGioiTinh().toLowerCase();
-            if (ho.contains(tuKhoa) || ten.contains(tuKhoa) || gioiTinh.contains(tuKhoa)) {
+            if (ho.contains(tuKhoa) || ten.contains(tuKhoa) || gioiTinh.contains(tuKhoa) || makh.contains(tuKhoa)) {
                 dskh.add(kh);
             }
         }
@@ -90,6 +91,7 @@ public class KhachHangBUS {
     }
 
     public boolean suaKhachHang(String makh, String ho, String ten, String gioiTinh) { 
+        
         //Kiểm tra đã nhập tên chưa
         if (ten.trim().equals("")) {
             new MyDialog("Không được để trống tên!", MyDialog.ERROR_DIALOG);
@@ -100,6 +102,7 @@ public class KhachHangBUS {
         kh.setHo(ho);
         kh.setTen(ten);
         kh.setGioiTinh(gioiTinh);
+        
         boolean flag = khachHangDAO.updateKhachHang(Integer.parseInt(makh), kh);
         if (flag) {
             new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);
@@ -111,14 +114,10 @@ public class KhachHangBUS {
 
     public boolean xoaKhachHang(int maKH) {
         boolean flag = false;
-//        try {
             
-            MyDialog dlg = new MyDialog("Bạn có chắc chắn muốn xoá?", MyDialog.WARNING_DIALOG);
-            if(dlg.getAction() != MyDialog.OK_OPTION) return false;
-            flag = khachHangDAO.deleteKhachHang(maKH);
-//        } catch (Exception e) {
-//            new MyDialog("Chưa chọn khách hàng!", MyDialog.ERROR_DIALOG);
-//        }
+        MyDialog dlg = new MyDialog("Bạn có chắc chắn muốn xoá?", MyDialog.WARNING_DIALOG);
+        if(dlg.getAction() != MyDialog.OK_OPTION) return false;
+        flag = khachHangDAO.deleteKhachHang(maKH);
         if (flag) {
             new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
         } else {
