@@ -9,7 +9,7 @@ public class KhachHangBUS {
 
     public ArrayList<KhachHangDTO> listKhachHang = new ArrayList<>();
     public KhachHangDAO khachHangDAO = new KhachHangDAO();
-
+    
     public ArrayList<KhachHangDTO> getListKhachHang() {
         this.listKhachHang = khachHangDAO.getListKhachHang();
         return listKhachHang;

@@ -9,18 +9,9 @@ public class NhaCungCapBUS {
     private NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
     private ArrayList<NhaCungCapDTO> listNhaCungCap = null;
 
-    public NhaCungCapBUS() {
-        docDanhSach();
-    }
-
-    public void docDanhSach() {
-        this.listNhaCungCap = nhaCungCapDAO.getListNhaCungCap();
-    }
 
     public ArrayList<NhaCungCapDTO> getListNhaCungCap() {
-        if (this.listNhaCungCap == null) {
-            docDanhSach();
-        }
+        this.listNhaCungCap = nhaCungCapDAO.getListNhaCungCap();
         return this.listNhaCungCap;
     }
 

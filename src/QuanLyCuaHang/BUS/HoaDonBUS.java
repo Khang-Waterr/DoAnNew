@@ -9,8 +9,8 @@ import java.util.Date;
 
 public class HoaDonBUS {
 
-    private ArrayList<HoaDonDTO> listHoaDon;
-    private HoaDonDAO hoaDonDAO = new HoaDonDAO();
+    public ArrayList<HoaDonDTO> listHoaDon;
+    public HoaDonDAO hoaDonDAO = new HoaDonDAO();
 
     public ArrayList<HoaDonDTO> getListHoaDon() {
         listHoaDon = hoaDonDAO.getListHoaDon();
@@ -18,7 +18,7 @@ public class HoaDonBUS {
     }
 
     
-    public void luuHoaDon(int maKH, String nhanVien, int tongTien, String ghiChu) {
+    public void addHoaDon(int maKH, String nhanVien, int tongTien, String ghiChu) {
         HoaDonDTO hd = new HoaDonDTO();
         String[] arrNV = nhanVien.split(" - ");
         int maNV = Integer.parseInt(arrNV[0]);
@@ -26,7 +26,6 @@ public class HoaDonBUS {
         hd.setMaKH(maKH);
         hd.setGhiChu(ghiChu);
         hd.setTongTien(tongTien);
-
         hoaDonDAO.addHoaDon(hd);
     }
 

@@ -3,12 +3,12 @@ package QuanLyCuaHang.DTO;
 import java.util.Date;
 
 public class HoaDonDTO {
-    private int maHD;
-    private int maKH;
-    private int maNV;
-    private Date ngayLap;
-    private int tongTien;
-    private String ghiChu;
+    public int maHD;
+    public int maKH;
+    public int maNV;
+    public Date ngayLap;
+    public int tongTien;
+    public String ghiChu;
 
     public HoaDonDTO() {
     }
