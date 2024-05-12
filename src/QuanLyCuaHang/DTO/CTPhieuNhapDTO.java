@@ -1,11 +1,11 @@
 package QuanLyCuaHang.DTO;
 
 public class CTPhieuNhapDTO {
-    private int maPN;
-    private int maSP;
-    private int soLuong;
-    private int donGia;
-    private int thanhTien;
+    public int maPN;
+    public int maSP;
+    public int soLuong;
+    public int donGia;
+    public int thanhTien;
 
     public CTPhieuNhapDTO() {
     }

@@ -1,10 +1,10 @@
 package QuanLyCuaHang.DTO;
 
 public class NhaCungCapDTO {
-    private int maNCC;
-    private String tenNCC;
-    private String diaChi;
-    private String dienThoai;
+    public int maNCC;
+    public String tenNCC;
+    public String diaChi;
+    public String dienThoai;
 
     public NhaCungCapDTO() {
     }

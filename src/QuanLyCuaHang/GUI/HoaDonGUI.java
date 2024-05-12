@@ -16,6 +16,9 @@ public class HoaDonGUI extends javax.swing.JFrame {
     
     public HoaDonGUI() {
         initComponents();
+        //Để load trang ở giữa màn hình
+        this.setLocationRelativeTo(null);
+        //Chiều cao các dòng của bảng
         jTHoaDon.setRowHeight(30);
         upDTB();
     }
@@ -45,9 +48,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         jPContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTHoaDon = new javax.swing.JTable();
-        jBSua = new javax.swing.JButton();
         jBXoa = new javax.swing.JButton();
-        jBThem = new javax.swing.JButton();
         jBTimkiem = new javax.swing.JButton();
         txtTimkiem = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -88,27 +89,11 @@ public class HoaDonGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTHoaDon);
 
-        jBSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fixicon.png"))); // NOI18N
-        jBSua.setText(" Sửa");
-        jBSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBSuaActionPerformed(evt);
-            }
-        });
-
         jBXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delicon.png"))); // NOI18N
         jBXoa.setText(" Xóa");
         jBXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBXoaActionPerformed(evt);
-            }
-        });
-
-        jBThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/addicon.png"))); // NOI18N
-        jBThem.setText(" Thêm");
-        jBThem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBThemActionPerformed(evt);
             }
         });
 
@@ -165,10 +150,6 @@ public class HoaDonGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jBThem)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBSua)
-                                .addGap(18, 18, 18)
                                 .addComponent(jBXoa)))
                         .addContainerGap())))
         );
@@ -182,8 +163,6 @@ public class HoaDonGUI extends javax.swing.JFrame {
                     .addComponent(jBTimkiem)
                     .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBThem)
-                        .addComponent(jBSua)
                         .addComponent(jBXoa)
                         .addComponent(jButton1)))
                 .addGap(18, 18, 18)
@@ -231,7 +210,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         jBBanHang.setBackground(new java.awt.Color(153, 0, 0));
         jBBanHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jBBanHang.setForeground(new java.awt.Color(255, 255, 255));
-        jBBanHang.setText("Bán hàng");
+        jBBanHang.setText("Đặt món");
         jBBanHang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBBanHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +223,11 @@ public class HoaDonGUI extends javax.swing.JFrame {
         jBKhachHang.setForeground(new java.awt.Color(255, 255, 255));
         jBKhachHang.setText("Khách hàng");
         jBKhachHang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBKhachHangActionPerformed(evt);
+            }
+        });
 
         jBNhapHang.setBackground(new java.awt.Color(153, 0, 0));
         jBNhapHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -264,6 +248,11 @@ public class HoaDonGUI extends javax.swing.JFrame {
         jBHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         jBHoaDon.setText("Hóa đơn");
         jBHoaDon.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBHoaDonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPMenuLayout = new javax.swing.GroupLayout(jPMenu);
         jPMenu.setLayout(jPMenuLayout);
@@ -362,10 +351,14 @@ public class HoaDonGUI extends javax.swing.JFrame {
 
     private void jBBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBanHangActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new DatMonAnGUI().setVisible(true);
     }//GEN-LAST:event_jBBanHangActionPerformed
 
     private void jBSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSanPhamActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new SanPhamGUI().setVisible(true);
     }//GEN-LAST:event_jBSanPhamActionPerformed
 
     private void jBKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhuyenMaiActionPerformed
@@ -373,22 +366,13 @@ public class HoaDonGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBKhuyenMaiActionPerformed
 
     private void jBNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNhanVienActionPerformed
-        
+        this.dispose();
+        new NhanVienGUI().setVisible(true);
     }//GEN-LAST:event_jBNhanVienActionPerformed
 
     private void txtTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimkiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimkiemActionPerformed
-
-    private void jBXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBXoaActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jBXoaActionPerformed
-
-    private void jBThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBThemActionPerformed
-        // TODO add your handling code here:  
-        
-    }//GEN-LAST:event_jBThemActionPerformed
 
     private void jTHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTHoaDonMouseClicked
         //Lấy thông tin object khi click chuột vào 
@@ -400,10 +384,20 @@ public class HoaDonGUI extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jBTimkiemActionPerformed
 
-    private void jBSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSuaActionPerformed
+    private void jBXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBXoaActionPerformed
         // TODO add your handling code here:
-     
-    }//GEN-LAST:event_jBSuaActionPerformed
+
+    }//GEN-LAST:event_jBXoaActionPerformed
+
+    private void jBKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhachHangActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new KhachHangGUI().setVisible(true);
+    }//GEN-LAST:event_jBKhachHangActionPerformed
+
+    private void jBHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHoaDonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBHoaDonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -449,8 +443,6 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBNhanVien;
     private javax.swing.JButton jBNhapHang;
     private javax.swing.JButton jBSanPham;
-    private javax.swing.JButton jBSua;
-    private javax.swing.JButton jBThem;
     private javax.swing.JButton jBThongKe;
     private javax.swing.JButton jBTimkiem;
     private javax.swing.JButton jBXoa;

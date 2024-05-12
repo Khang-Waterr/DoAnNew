@@ -9,19 +9,13 @@ import java.util.ArrayList;
 
 public class CTHoaDonBUS {
 
-    private ArrayList<CTHoaDonDTO> listCTHoaDon;
-    private CTHoaDonDAO ctHDDAO = new CTHoaDonDAO();
-    private HoaDonBUS hdBUS = new HoaDonBUS();
-
-    public CTHoaDonBUS() {
-        docListCTHoaDon();
-    }
-
-    public void docListCTHoaDon() {
-        this.listCTHoaDon = ctHDDAO.getListCTHoaDon();
-    }
-
+    public ArrayList<CTHoaDonDTO> listCTHoaDon;
+    public CTHoaDonDAO ctHDDAO = new CTHoaDonDAO();
+    public HoaDonBUS hdBUS = new HoaDonBUS();
+    
+    //Xóa đọc list, thêm đọc list vào getlist
     public ArrayList<CTHoaDonDTO> getListCTHoaDon() {
+        this.listCTHoaDon = ctHDDAO.getListCTHoaDon();
         return listCTHoaDon;
     }
 

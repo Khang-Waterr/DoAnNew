@@ -2,12 +2,12 @@ package QuanLyCuaHang.DTO;
 
 public class PhanQuyenDTO {
 
-    private String quyen;
-    private int nhapHang;
-    private int qlSanPham;
-    private int qlNhanVien;
-    private int qlKhachHang;
-    private int thongKe;
+    public String quyen;
+    public int nhapHang;
+    public int qlSanPham;
+    public int qlNhanVien;
+    public int qlKhachHang;
+    public int thongKe;
 
     public PhanQuyenDTO() {
     }

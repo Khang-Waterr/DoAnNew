@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class GiamGiaDTO {
 
-    private int maGiam;
-    private String tenGiamGia;
-    private int phanTramGiam;
-    private int dieuKien;
-    private Date ngayBD;
-    private Date ngayKT;
+    public int maGiam;
+    public String tenGiamGia;
+    public int phanTramGiam;
+    public int dieuKien;
+    public Date ngayBD;
+    public Date ngayKT;
 
     public GiamGiaDTO() {
     }

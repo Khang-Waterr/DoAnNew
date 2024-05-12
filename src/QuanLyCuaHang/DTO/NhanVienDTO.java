@@ -2,11 +2,11 @@ package QuanLyCuaHang.DTO;
 
 public class NhanVienDTO {
 
-    private int maNV;
-    private String ho;
-    private String ten;
-    private String gioiTinh;
-    private String chucVu;
+    public int maNV;
+    public String ho;
+    public String ten;
+    public String gioiTinh;
+    public String chucVu;
 
     public NhanVienDTO() {
     }

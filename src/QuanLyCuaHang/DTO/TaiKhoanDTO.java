@@ -2,10 +2,10 @@ package QuanLyCuaHang.DTO;
 
 public class TaiKhoanDTO {
 
-    private int maNhanVien;
-    private String tenDangNhap;
-    private String matKhau;
-    private String quyen;
+    public int maNhanVien;
+    public String tenDangNhap;
+    public String matKhau;
+    public String quyen;
 
     public TaiKhoanDTO() {
     }

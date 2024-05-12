@@ -2,8 +2,8 @@ package QuanLyCuaHang.DTO;
 
 public class LoaiSPDTO {
 
-    private int maLoai;
-    private String tenLoai;
+    public int maLoai;
+    public String tenLoai;
 
     public LoaiSPDTO() {
     }

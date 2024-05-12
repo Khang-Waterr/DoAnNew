@@ -1,13 +1,13 @@
 package QuanLyCuaHang.DTO;
 
 public class SanPhamDTO {
-    private int maSP;
-    private String tenSP;
-    private int maLoai;
-    private int soLuong;
-    private String donViTinh;
-    private String hinhAnh;
-    private int donGia;
+    public int maSP;
+    public String tenSP;
+    public int maLoai;
+    public int soLuong;
+    public String donViTinh;
+    public String hinhAnh;
+    public int donGia;
 
     public SanPhamDTO() {
 

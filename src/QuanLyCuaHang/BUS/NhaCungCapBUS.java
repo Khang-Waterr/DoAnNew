@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class NhaCungCapBUS {
-    private NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
-    private ArrayList<NhaCungCapDTO> listNhaCungCap = null;
+    public NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
+    public ArrayList<NhaCungCapDTO> listNhaCungCap = null;
 
 
     public ArrayList<NhaCungCapDTO> getListNhaCungCap() {

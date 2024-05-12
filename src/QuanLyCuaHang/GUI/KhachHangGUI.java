@@ -9,7 +9,6 @@ import QuanLyCuaHang.DTO.KhachHangDTO;
 import doanquanlycuahang.MyDialog;
 import javax.swing.table.DefaultTableModel;
 
-
 public class KhachHangGUI extends javax.swing.JFrame {
     public static KhachHangBUS khBUS = new KhachHangBUS(); //Để thao tác với bảng dữ liệu khách hàng
     public static KhachHangDTO khDTO = new KhachHangDTO(); //Biến này đại diện cho khách hàng được chọn trong table
@@ -28,10 +27,11 @@ public class KhachHangGUI extends javax.swing.JFrame {
         khBUS.getListKhachHang();
         
         for (KhachHangDTO khtemp : khBUS.listKhachHang){
-            RecordTable.addRow(new Object[]{Integer.toString(khtemp.maKH),khtemp.ho,khtemp.ten,khtemp.gioiTinh,khtemp.tongChiTieu});
+            RecordTable.addRow(new Object[]{khtemp.maKH,khtemp.ho,khtemp.ten,khtemp.gioiTinh,khtemp.tongChiTieu});
         }
     }
-        
+    
+    //Thêm dòng khi add đối tượng ở Jframe khác
     public static void AddRowToJTable(Object[] dataRow)
     {
         DefaultTableModel model = (DefaultTableModel)jTKhachHang.getModel();
@@ -225,7 +225,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         jBBanHang.setBackground(new java.awt.Color(153, 0, 0));
         jBBanHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jBBanHang.setForeground(new java.awt.Color(255, 255, 255));
-        jBBanHang.setText("Bán hàng");
+        jBBanHang.setText("Đặt món");
         jBBanHang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBBanHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,6 +238,11 @@ public class KhachHangGUI extends javax.swing.JFrame {
         jBKhachHang.setForeground(new java.awt.Color(255, 255, 255));
         jBKhachHang.setText("Khách hàng");
         jBKhachHang.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBKhachHangActionPerformed(evt);
+            }
+        });
 
         jBNhapHang.setBackground(new java.awt.Color(153, 0, 0));
         jBNhapHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -258,6 +263,11 @@ public class KhachHangGUI extends javax.swing.JFrame {
         jBHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         jBHoaDon.setText("Hóa đơn");
         jBHoaDon.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBHoaDonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPMenuLayout = new javax.swing.GroupLayout(jPMenu);
         jPMenu.setLayout(jPMenuLayout);
@@ -363,6 +373,8 @@ public class KhachHangGUI extends javax.swing.JFrame {
 
     private void jBSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSanPhamActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        new SanPhamGUI().setVisible(true);
     }//GEN-LAST:event_jBSanPhamActionPerformed
 
     private void jBKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhuyenMaiActionPerformed
@@ -370,7 +382,8 @@ public class KhachHangGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBKhuyenMaiActionPerformed
 
     private void jBNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNhanVienActionPerformed
-        
+        this.dispose();
+        new NhanVienGUI().setVisible(true);
     }//GEN-LAST:event_jBNhanVienActionPerformed
 
     private void txtTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimkiemActionPerformed
@@ -439,6 +452,16 @@ public class KhachHangGUI extends javax.swing.JFrame {
             updateFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         }
     }//GEN-LAST:event_jBSuaActionPerformed
+
+    private void jBKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhachHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBKhachHangActionPerformed
+
+    private void jBHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHoaDonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new HoaDonGUI().setVisible(true);
+    }//GEN-LAST:event_jBHoaDonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -9,6 +9,7 @@ public class addKhachHangGUI extends javax.swing.JFrame {
     
     public addKhachHangGUI() {
         initComponents();
+        
     }
     
     

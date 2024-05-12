@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class PhieuNhapDTO {
 
-    private int maPN;
-    private int maNCC;
-    private int maNV;
-    private Date ngayLap;
-    private int tongTien;
+    public int maPN;
+    public int maNCC;
+    public int maNV;
+    public Date ngayLap;
+    public int tongTien;
 
     public PhieuNhapDTO() {
     }
