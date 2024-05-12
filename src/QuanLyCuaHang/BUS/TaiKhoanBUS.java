@@ -1,7 +1,6 @@
 package QuanLyCuaHang.BUS;
 
 import QuanLyCuaHang.DAO.TaiKhoanDAO;
-import QuanLyCuaHang.DTO.TaiKhoanDTO;
 import doanquanlycuahang.MyDialog;
 
 public class TaiKhoanBUS {
@@ -85,19 +84,19 @@ public class TaiKhoanBUS {
         }
     }
 
-    public boolean doiMatKhau(String matKhauCu, String matKhauMoi, String nhapLaiMatKhau) {
-        if(!matKhauMoi.equals(nhapLaiMatKhau)) {
-            new MyDialog("Mật khẩu mới không khớp!", MyDialog.ERROR_DIALOG);
-            return false;
-        }
-        boolean flag = taiKhoanDAO.doiMatKhau(matKhauCu, matKhauMoi);
-        if (flag) {
-            new MyDialog("Đổi thành công!", MyDialog.SUCCESS_DIALOG);
-        } else {
-            new MyDialog("Mật khẩu cũ nhập sai!", MyDialog.ERROR_DIALOG);
-        }
-        return flag;
-    }
+//    public boolean doiMatKhau(String matKhauCu, String matKhauMoi, String nhapLaiMatKhau) {
+//        if(!matKhauMoi.equals(nhapLaiMatKhau)) {
+//            new MyDialog("Mật khẩu mới không khớp!", MyDialog.ERROR_DIALOG);
+//            return false;
+//        }
+//        boolean flag = taiKhoanDAO.doiMatKhau(matKhauCu, matKhauMoi);
+//        if (flag) {
+//            new MyDialog("Đổi thành công!", MyDialog.SUCCESS_DIALOG);
+//        } else {
+//            new MyDialog("Mật khẩu cũ nhập sai!", MyDialog.ERROR_DIALOG);
+//        }
+//        return flag;
+//    }
     
     public int getTrangThai(String maNV) {
         int ma = Integer.parseInt(maNV);

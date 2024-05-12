@@ -1,6 +1,5 @@
 package QuanLyCuaHang.DAO;
 
-import QuanLyCuaHang.BUS.DangNhapBUS;
 import QuanLyCuaHang.DTO.TaiKhoanDTO;
 
 import java.sql.PreparedStatement;
@@ -109,18 +108,18 @@ public class TaiKhoanDAO {
         return false;
     }
 
-    public boolean doiMatKhau(String matKhauCu, String matKhauMoi) {
-        try {
-            String sql = "UPDATE TaiKhoan SET MatKhau=? WHERE MaNV=? AND MatKhau=?";
-            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-            pre.setString(1, matKhauMoi);
-            pre.setInt(2, DangNhapBUS.taiKhoanLogin.getMaNhanVien());
-            pre.setString(3, matKhauCu);
-            return pre.executeUpdate() > 0;
-        } catch (Exception e) {
-        }
-        return false;
-    }
+//    public boolean doiMatKhau(String matKhauCu, String matKhauMoi) {
+//        try {
+//            String sql = "UPDATE TaiKhoan SET MatKhau=? WHERE MaNV=? AND MatKhau=?";
+//            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
+//            pre.setString(1, matKhauMoi);
+//            pre.setInt(2, DangNhapBUS.taiKhoanLogin.getMaNhanVien());
+//            pre.setString(3, matKhauCu);
+//            return pre.executeUpdate() > 0;
+//        } catch (Exception e) {
+//        }
+//        return false;
+//    }
 
     public int getTrangThai(int ma) {
         try {
