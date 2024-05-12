@@ -1,6 +1,7 @@
 package QuanLyCuaHang.GUI;
 
 import QuanLyCuaHang.BUS.KhachHangBUS;
+import QuanLyCuaHang.DTO.KhachHangDTO;
 import doanquanlycuahang.MyDialog;
 
 public class updateKhachHangGUI extends javax.swing.JFrame {
@@ -111,7 +112,8 @@ public class updateKhachHangGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         flag = khBUS.suaKhachHang(Integer.toString(KhachHangGUI.khDTO.maKH),jTextField2.getText(),jTextField3.getText(), jTextField4.getText());
         if (flag){
-            
+            KhachHangGUI.upDTB();
+            KhachHangGUI.khDTO = new KhachHangDTO();
             this.dispose();   
         }
     }//GEN-LAST:event_jButton1ActionPerformed
