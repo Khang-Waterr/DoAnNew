@@ -365,6 +365,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
         } else {
             khBUS.xoaKhachHang(khDTO.maKH);
             upDTB();
+            khDTO = new KhachHangDTO();
         }
     }//GEN-LAST:event_jBXoaActionPerformed
 
