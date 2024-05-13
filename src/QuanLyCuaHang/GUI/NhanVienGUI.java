@@ -405,12 +405,12 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
     private void jBThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBThemActionPerformed
         // TODO add your handling code here:
-        addKhachHangGUI addFrame = new addKhachHangGUI();
-        addFrame.setVisible(true);
-        addFrame.pack();
-        addFrame.setLocationRelativeTo(null);
-        addFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+//        addKhachHangGUI addFrame = new addKhachHangGUI();
+//        addFrame.setVisible(true);
+//        addFrame.pack();
+//        addFrame.setLocationRelativeTo(null);
+//        addFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//        
     }//GEN-LAST:event_jBThemActionPerformed
 
     private void jTNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTNhanVienMouseClicked

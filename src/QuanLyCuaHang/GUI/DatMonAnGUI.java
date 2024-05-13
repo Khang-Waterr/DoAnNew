@@ -4,39 +4,39 @@
  */
 package QuanLyCuaHang.GUI;
 
-import QuanLyCuaHang.BUS.KhachHangBUS;
-import QuanLyCuaHang.DTO.KhachHangDTO;
-import doanquanlycuahang.MyDialog;
+import QuanLyCuaHang.BUS.SanPhamBUS;
+import QuanLyCuaHang.DTO.SanPhamDTO;
+import static QuanLyCuaHang.GUI.SanPhamGUI.jTSanPham;
 import javax.swing.table.DefaultTableModel;
 
 
 public class DatMonAnGUI extends javax.swing.JFrame {
-    public static KhachHangBUS khBUS = new KhachHangBUS(); //Để thao tác với bảng dữ liệu khách hàng
-    public static KhachHangDTO khDTO = new KhachHangDTO(); //Biến này đại diện cho khách hàng được chọn trong table
+    public static SanPhamBUS spBUS = new SanPhamBUS(); //Để thao tác với bảng dữ liệu 
+    public static SanPhamDTO spDTO = new SanPhamDTO(); //Biến này đại diện cho khách hàng được chọn trong table
     
     public DatMonAnGUI() {
         initComponents();
         this.setLocationRelativeTo(null);
-        jTDatMon.setRowHeight(30);
+        jTSanPham.setRowHeight(30);
         upDTB();
     }
     
     //Load DTB lên Table
     public static void upDTB(){
-        DefaultTableModel RecordTable = (DefaultTableModel)jTDatMon.getModel();
+        DefaultTableModel RecordTable = (DefaultTableModel)jTSanPham.getModel();
         RecordTable.setRowCount(0);
-        khBUS.getListKhachHang();
+        spBUS.getListSanPham();
         
-        for (KhachHangDTO khtemp : khBUS.listKhachHang){
-            RecordTable.addRow(new Object[]{Integer.toString(khtemp.maKH),khtemp.ho,khtemp.ten,khtemp.gioiTinh,khtemp.tongChiTieu});
+        for (SanPhamDTO sptemp : spBUS.listSanPham){
+            RecordTable.addRow(new Object[]{sptemp.maSP,sptemp.tenSP,sptemp.maLoai,sptemp.soLuong,sptemp.donViTinh,sptemp.donGia});
         }
     }
         
-    public static void AddRowToJTable(Object[] dataRow)
-    {
-        DefaultTableModel model = (DefaultTableModel)jTDatMon.getModel();
-        model.addRow(dataRow);
-    }  
+//    public static void AddRowToJTable(Object[] dataRow)
+//    {
+//        DefaultTableModel model = (DefaultTableModel)jTDatMon.getModel();
+//        model.addRow(dataRow);
+//    }  
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,7 +45,7 @@ public class DatMonAnGUI extends javax.swing.JFrame {
         jPBody = new javax.swing.JPanel();
         jPContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTDatMon = new javax.swing.JTable();
+        jTSanPham = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         txtTimkiem = new javax.swing.JTextField();
@@ -55,7 +55,7 @@ public class DatMonAnGUI extends javax.swing.JFrame {
         jBSua = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTGioHang = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -77,9 +77,9 @@ public class DatMonAnGUI extends javax.swing.JFrame {
 
         jPBody.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTDatMon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTDatMon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTDatMon.setModel(new javax.swing.table.DefaultTableModel(
+        jTSanPham.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTSanPham.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -87,12 +87,12 @@ public class DatMonAnGUI extends javax.swing.JFrame {
                 "Mã SP", "Tên SP", "Mã loại", "Số lượng", "Đơn vị tính", "Đơn giá"
             }
         ));
-        jTDatMon.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTDatMonMouseClicked(evt);
+                jTSanPhamMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTDatMon);
+        jScrollPane1.setViewportView(jTSanPham);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/reset.png"))); // NOI18N
         jButton1.setText("Refresh");
@@ -173,7 +173,7 @@ public class DatMonAnGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTGioHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -181,7 +181,7 @@ public class DatMonAnGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTGioHang);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -480,17 +480,17 @@ public class DatMonAnGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBThemActionPerformed
 
-    private void jTDatMonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTDatMonMouseClicked
+    private void jTSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTSanPhamMouseClicked
         //Lấy thông tin object khi click chuột vào 
-        DefaultTableModel RecordTable = (DefaultTableModel) jTDatMon.getModel();
-        int SelectedRows = jTDatMon.getSelectedRow();
-        khDTO.maKH = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString()));
-        khDTO.ho = (RecordTable.getValueAt(SelectedRows, 1).toString());
-        khDTO.ten = (RecordTable.getValueAt(SelectedRows, 2).toString());
-        khDTO.gioiTinh = (RecordTable.getValueAt(SelectedRows, 3).toString());
-        khDTO.tongChiTieu = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 4).toString()));
-        
-    }//GEN-LAST:event_jTDatMonMouseClicked
+         DefaultTableModel RecordTable = (DefaultTableModel) jTSanPham.getModel();
+        int SelectedRows = jTSanPham.getSelectedRow();
+        spDTO.maSP = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString()));
+        spDTO.tenSP = (RecordTable.getValueAt(SelectedRows, 1).toString());
+        spDTO.maLoai = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 2).toString()));
+        spDTO.soLuong = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 3).toString()));
+        spDTO.donViTinh = (RecordTable.getValueAt(SelectedRows, 4).toString());
+        spDTO.donGia = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 5).toString()));
+    }//GEN-LAST:event_jTSanPhamMouseClicked
 
     private void jBTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTimkiemActionPerformed
         // TODO add your handling code here:
@@ -599,8 +599,8 @@ public class DatMonAnGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    static javax.swing.JTable jTDatMon;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTGioHang;
+    static javax.swing.JTable jTSanPham;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }

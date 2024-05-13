@@ -34,11 +34,11 @@ public class HoaDonGUI extends javax.swing.JFrame {
         }
     }
         
-    public static void AddRowToJTable(Object[] dataRow)
-    {
-        DefaultTableModel model = (DefaultTableModel)jTHoaDon.getModel();
-        model.addRow(dataRow);
-    }  
+//    public static void AddRowToJTable(Object[] dataRow)
+//    {
+//        DefaultTableModel model = (DefaultTableModel)jTHoaDon.getModel();
+//        model.addRow(dataRow);
+//    }  
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
