@@ -1,36 +1,36 @@
 package QuanLyCuaHang.GUI;
 
-import QuanLyCuaHang.BUS.KhachHangBUS;
-import QuanLyCuaHang.DTO.KhachHangDTO;
+import QuanLyCuaHang.BUS.SanPhamBUS;
+import QuanLyCuaHang.DTO.SanPhamDTO;
 import doanquanlycuahang.MyDialog;
 import javax.swing.table.DefaultTableModel;
 
 public class SanPhamGUI extends javax.swing.JFrame {
-    public static KhachHangBUS khBUS = new KhachHangBUS(); //Để thao tác với bảng dữ liệu khách hàng
-    public static KhachHangDTO khDTO = new KhachHangDTO(); //Biến này đại diện cho khách hàng được chọn trong table
+    public static SanPhamBUS spBUS = new SanPhamBUS(); //Để thao tác với bảng dữ liệu 
+    public static SanPhamDTO spDTO = new SanPhamDTO(); //Biến này đại diện cho khách hàng được chọn trong table
     
     public SanPhamGUI() {
         initComponents();
         this.setLocationRelativeTo(null);
-        jTKhachHang.setRowHeight(30);
+        jTSanPham.setRowHeight(30);
         upDTB();
     }
     
     //Load DTB lên Table
     public static void upDTB(){
-        DefaultTableModel RecordTable = (DefaultTableModel)jTKhachHang.getModel();
+        DefaultTableModel RecordTable = (DefaultTableModel)jTSanPham.getModel();
         RecordTable.setRowCount(0);
-        khBUS.getListKhachHang();
+        spBUS.getListSanPham();
         
-        for (KhachHangDTO khtemp : khBUS.listKhachHang){
-            RecordTable.addRow(new Object[]{khtemp.maKH,khtemp.ho,khtemp.ten,khtemp.gioiTinh,khtemp.tongChiTieu});
+        for (SanPhamDTO sptemp : spBUS.listSanPham){
+            RecordTable.addRow(new Object[]{sptemp.maSP,sptemp.tenSP,sptemp.maLoai,sptemp.soLuong,sptemp.donViTinh,sptemp.donGia});
         }
     }
     
     //Thêm dòng khi add đối tượng ở Jframe khác
     public static void AddRowToJTable(Object[] dataRow)
     {
-        DefaultTableModel model = (DefaultTableModel)jTKhachHang.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTSanPham.getModel();
         model.addRow(dataRow);
     }  
     
@@ -41,7 +41,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         jPBody = new javax.swing.JPanel();
         jPContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTKhachHang = new javax.swing.JTable();
+        jTSanPham = new javax.swing.JTable();
         jBSua = new javax.swing.JButton();
         jBXoa = new javax.swing.JButton();
         jBThem = new javax.swing.JButton();
@@ -67,22 +67,22 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
         jPBody.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTKhachHang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTKhachHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTKhachHang.setModel(new javax.swing.table.DefaultTableModel(
+        jTSanPham.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTSanPham.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã", "Họ", "Tên", "Giới tính", "Chi tiêu"
+                "Mã SP", "Tên SP", "Mã loại", "Số lượng", "Đơn vị tính", "Đơn giá"
             }
         ));
-        jTKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTKhachHangMouseClicked(evt);
+                jTSanPhamMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTKhachHang);
+        jScrollPane1.setViewportView(jTSanPham);
 
         jBSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fixicon.png"))); // NOI18N
         jBSua.setText(" Sửa");
@@ -382,65 +382,66 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
     private void jBXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBXoaActionPerformed
         // TODO add your handling code here:
-        if (khDTO.ten == null){
-            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
-        } else {
-            khBUS.xoaKhachHang(khDTO.maKH);
-            //Reset lại đối tượng chỏ trong bảng
-            khDTO = new KhachHangDTO();
-            //Xóa xong phải load lại DTB lên Table để thể hiện xóa
-            upDTB();
-        }
+//        if (khDTO.ten == null){
+//            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
+//        } else {
+//            khBUS.xoaKhachHang(khDTO.maKH);
+//            //Reset lại đối tượng chỏ trong bảng
+//            khDTO = new KhachHangDTO();
+//            //Xóa xong phải load lại DTB lên Table để thể hiện xóa
+//            upDTB();
+//        }
     }//GEN-LAST:event_jBXoaActionPerformed
 
     private void jBThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBThemActionPerformed
         // TODO add your handling code here:
-        addKhachHangGUI addFrame = new addKhachHangGUI();
-        addFrame.setVisible(true);
-        addFrame.pack();
-        addFrame.setLocationRelativeTo(null);
-        addFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+//        addKhachHangGUI addFrame = new addKhachHangGUI();
+//        addFrame.setVisible(true);
+//        addFrame.pack();
+//        addFrame.setLocationRelativeTo(null);
+//        addFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//        
     }//GEN-LAST:event_jBThemActionPerformed
 
-    private void jTKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTKhachHangMouseClicked
+    private void jTSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTSanPhamMouseClicked
         //Lấy thông tin object khi click chuột vào 
-        DefaultTableModel RecordTable = (DefaultTableModel) jTKhachHang.getModel();
-        int SelectedRows = jTKhachHang.getSelectedRow();
-        khDTO.maKH = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString()));
-        khDTO.ho = (RecordTable.getValueAt(SelectedRows, 1).toString());
-        khDTO.ten = (RecordTable.getValueAt(SelectedRows, 2).toString());
-        khDTO.gioiTinh = (RecordTable.getValueAt(SelectedRows, 3).toString());
-        khDTO.tongChiTieu = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 4).toString()));
-        
-    }//GEN-LAST:event_jTKhachHangMouseClicked
+        DefaultTableModel RecordTable = (DefaultTableModel) jTSanPham.getModel();
+        int SelectedRows = jTSanPham.getSelectedRow();
+        spDTO.maSP = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString()));
+        spDTO.tenSP = (RecordTable.getValueAt(SelectedRows, 1).toString());
+        spDTO.maLoai = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 2).toString()));
+        spDTO.soLuong = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 3).toString()));
+        spDTO.donViTinh = (RecordTable.getValueAt(SelectedRows, 4).toString());
+        spDTO.hinhAnh = (RecordTable.getValueAt(SelectedRows, 5).toString());
+        spDTO.donGia = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 6).toString()));
+    }//GEN-LAST:event_jTSanPhamMouseClicked
 
     private void jBTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTimkiemActionPerformed
         // TODO add your handling code here:
-        if(txtTimkiem.getText().trim().equals("")){
-            upDTB();
-        } else{
-           upDTB();
-           khBUS.listKhachHang = khBUS.timKiemKhachHang(txtTimkiem.getText());
-           DefaultTableModel RecordTable = (DefaultTableModel)jTKhachHang.getModel();
-           RecordTable.setRowCount(0);
-           for (KhachHangDTO khtemp : khBUS.listKhachHang){
-           RecordTable.addRow(new Object[]{Integer.toString(khtemp.maKH),khtemp.ho,khtemp.ten,khtemp.gioiTinh,khtemp.tongChiTieu});
-           }
-        }   
+//        if(txtTimkiem.getText().trim().equals("")){
+//            upDTB();
+//        } else{
+//           upDTB();
+//           khBUS.listKhachHang = khBUS.timKiemKhachHang(txtTimkiem.getText());
+//           DefaultTableModel RecordTable = (DefaultTableModel)jTSanPham.getModel();
+//           RecordTable.setRowCount(0);
+//           for (KhachHangDTO khtemp : khBUS.listKhachHang){
+//           RecordTable.addRow(new Object[]{Integer.toString(khtemp.maKH),khtemp.ho,khtemp.ten,khtemp.gioiTinh,khtemp.tongChiTieu});
+//           }
+//        }   
     }//GEN-LAST:event_jBTimkiemActionPerformed
 
     private void jBSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSuaActionPerformed
         // TODO add your handling code here:
-        if (khDTO.ten == null){
-            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
-        } else {
-            updateKhachHangGUI updateFrame = new updateKhachHangGUI();
-            updateFrame.setVisible(true);
-            updateFrame.pack();
-            updateFrame.setLocationRelativeTo(null);
-            updateFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        }
+//        if (khDTO.ten == null){
+//            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
+//        } else {
+//            updateKhachHangGUI updateFrame = new updateKhachHangGUI();
+//            updateFrame.setVisible(true);
+//            updateFrame.pack();
+//            updateFrame.setLocationRelativeTo(null);
+//            updateFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//        }
     }//GEN-LAST:event_jBSuaActionPerformed
 
     private void jBKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhachHangActionPerformed
@@ -507,7 +508,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPMenu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    static javax.swing.JTable jTKhachHang;
+    static javax.swing.JTable jTSanPham;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }

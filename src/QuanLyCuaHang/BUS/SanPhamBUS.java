@@ -8,21 +8,13 @@ import java.util.ArrayList;
 
 public class SanPhamBUS {
 
-    private ArrayList<SanPhamDTO> listSanPham = null;
-    private SanPhamDAO spDAO = new SanPhamDAO();
+    public ArrayList<SanPhamDTO> listSanPham = null;
+    public SanPhamDAO spDAO = new SanPhamDAO();
 
-    public SanPhamBUS() {
-        docListSanPham();
-    }
 
-    public void docListSanPham() {
-        listSanPham = spDAO.getListSanPham();
-    }
 
     public ArrayList<SanPhamDTO> getListSanPham() {
-        if (listSanPham == null) {
-            docListSanPham();
-        }
+        listSanPham = spDAO.getListSanPham();
         return listSanPham;
     }
 

@@ -79,7 +79,7 @@ public class NhanVienGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã", "Họ", "Tên", "Giới tính", "Chức vụ"
+                "Mã NV", "Họ", "Tên", "Giới tính", "Chức vụ"
             }
         ));
         jTNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {

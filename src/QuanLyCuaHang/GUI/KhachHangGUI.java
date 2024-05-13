@@ -78,7 +78,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã", "Họ", "Tên", "Giới tính", "Chi tiêu"
+                "Mã KH", "Họ", "Tên", "Giới tính", "Chi tiêu"
             }
         ));
         jTKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
