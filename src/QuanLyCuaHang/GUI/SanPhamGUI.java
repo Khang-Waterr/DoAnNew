@@ -417,8 +417,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         spDTO.maLoai = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 2).toString()));
         spDTO.soLuong = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 3).toString()));
         spDTO.donViTinh = (RecordTable.getValueAt(SelectedRows, 4).toString());
-        spDTO.hinhAnh = (RecordTable.getValueAt(SelectedRows, 5).toString());
-        spDTO.donGia = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 6).toString()));
+        spDTO.donGia = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 5).toString()));
     }//GEN-LAST:event_jTSanPhamMouseClicked
 
     private void jBTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTimkiemActionPerformed
