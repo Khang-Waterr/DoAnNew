@@ -17,13 +17,13 @@ public class DatMonAnGUI extends javax.swing.JFrame {
     public DatMonAnGUI() {
         initComponents();
         this.setLocationRelativeTo(null);
-        jTKhachHang.setRowHeight(30);
+        jTDatMon.setRowHeight(30);
         upDTB();
     }
     
     //Load DTB lên Table
     public static void upDTB(){
-        DefaultTableModel RecordTable = (DefaultTableModel)jTKhachHang.getModel();
+        DefaultTableModel RecordTable = (DefaultTableModel)jTDatMon.getModel();
         RecordTable.setRowCount(0);
         khBUS.getListKhachHang();
         
@@ -34,7 +34,7 @@ public class DatMonAnGUI extends javax.swing.JFrame {
         
     public static void AddRowToJTable(Object[] dataRow)
     {
-        DefaultTableModel model = (DefaultTableModel)jTKhachHang.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTDatMon.getModel();
         model.addRow(dataRow);
     }  
     
@@ -45,7 +45,7 @@ public class DatMonAnGUI extends javax.swing.JFrame {
         jPBody = new javax.swing.JPanel();
         jPContent = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTKhachHang = new javax.swing.JTable();
+        jTDatMon = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -61,7 +61,6 @@ public class DatMonAnGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         jPMenu = new javax.swing.JPanel();
         jBNhanVien = new javax.swing.JButton();
         jBKhuyenMai = new javax.swing.JButton();
@@ -80,9 +79,9 @@ public class DatMonAnGUI extends javax.swing.JFrame {
 
         jPBody.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTKhachHang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTKhachHang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTKhachHang.setModel(new javax.swing.table.DefaultTableModel(
+        jTDatMon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTDatMon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTDatMon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -90,12 +89,12 @@ public class DatMonAnGUI extends javax.swing.JFrame {
                 "Mã", "Họ", "Tên", "Giới tính", "Chi tiêu"
             }
         ));
-        jTKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTDatMon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTKhachHangMouseClicked(evt);
+                jTDatMonMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTKhachHang);
+        jScrollPane1.setViewportView(jTDatMon);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -220,17 +219,6 @@ public class DatMonAnGUI extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Cart.png"))); // NOI18N
         jLabel1.setText("Giỏ Hàng");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -242,9 +230,7 @@ public class DatMonAnGUI extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -260,10 +246,8 @@ public class DatMonAnGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -523,17 +507,17 @@ public class DatMonAnGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBThemActionPerformed
 
-    private void jTKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTKhachHangMouseClicked
+    private void jTDatMonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTDatMonMouseClicked
         //Lấy thông tin object khi click chuột vào 
-        DefaultTableModel RecordTable = (DefaultTableModel) jTKhachHang.getModel();
-        int SelectedRows = jTKhachHang.getSelectedRow();
+        DefaultTableModel RecordTable = (DefaultTableModel) jTDatMon.getModel();
+        int SelectedRows = jTDatMon.getSelectedRow();
         khDTO.maKH = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString()));
         khDTO.ho = (RecordTable.getValueAt(SelectedRows, 1).toString());
         khDTO.ten = (RecordTable.getValueAt(SelectedRows, 2).toString());
         khDTO.gioiTinh = (RecordTable.getValueAt(SelectedRows, 3).toString());
         khDTO.tongChiTieu = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 4).toString()));
         
-    }//GEN-LAST:event_jTKhachHangMouseClicked
+    }//GEN-LAST:event_jTDatMonMouseClicked
 
     private void jBTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTimkiemActionPerformed
         // TODO add your handling code here:
@@ -642,10 +626,9 @@ public class DatMonAnGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    static javax.swing.JTable jTKhachHang;
+    static javax.swing.JTable jTDatMon;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables

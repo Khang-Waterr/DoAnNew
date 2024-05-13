@@ -259,6 +259,11 @@ public class SanPhamGUI extends javax.swing.JFrame {
         jBHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         jBHoaDon.setText("Hóa đơn");
         jBHoaDon.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jBHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBHoaDonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPMenuLayout = new javax.swing.GroupLayout(jPMenu);
         jPMenu.setLayout(jPMenuLayout);
@@ -449,6 +454,12 @@ public class SanPhamGUI extends javax.swing.JFrame {
         this.dispose();
         new KhachHangGUI().setVisible(true);
     }//GEN-LAST:event_jBKhachHangActionPerformed
+
+    private void jBHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHoaDonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new HoaDonGUI().setVisible(true);
+    }//GEN-LAST:event_jBHoaDonActionPerformed
 
     /**
      * @param args the command line arguments
