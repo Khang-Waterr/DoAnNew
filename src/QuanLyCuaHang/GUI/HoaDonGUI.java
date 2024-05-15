@@ -7,15 +7,19 @@ package QuanLyCuaHang.GUI;
 import QuanLyCuaHang.BUS.HoaDonBUS;
 import QuanLyCuaHang.DTO.HoaDonDTO;
 import doanquanlycuahang.MyDialog;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
 
 public class HoaDonGUI extends javax.swing.JFrame {
     public static HoaDonBUS hoadonBUS = new HoaDonBUS(); //Để thao tác với bảng dữ liệu hóa đơn
-    public static HoaDonDTO khDTO = new HoaDonDTO(); //Biến này đại diện cho khách hàng được chọn trong table
+    public static HoaDonDTO hoadonDTO = new HoaDonDTO(); //Biến này đại diện cho khách hàng được chọn trong table
     
     public HoaDonGUI() {
         initComponents();
+        hoadonDTO = new HoaDonDTO();
+        hoadonBUS = new HoaDonBUS();
         //Để load trang ở giữa màn hình
         this.setLocationRelativeTo(null);
         //Chiều cao các dòng của bảng
@@ -34,11 +38,10 @@ public class HoaDonGUI extends javax.swing.JFrame {
         }
     }
         
-//    public static void AddRowToJTable(Object[] dataRow)
-//    {
-//        DefaultTableModel model = (DefaultTableModel)jTHoaDon.getModel();
-//        model.addRow(dataRow);
-//    }  
+    public static void AddRowToJTable(Object[] dataRow) {
+        DefaultTableModel model = (DefaultTableModel)jTHoaDon.getModel();
+        model.addRow(dataRow);
+    }   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,7 +56,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         txtTimkiem = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jXemChiTietHoaDon = new javax.swing.JButton();
         jPMenu = new javax.swing.JPanel();
         jBNhanVien = new javax.swing.JButton();
         jBKhuyenMai = new javax.swing.JButton();
@@ -129,8 +132,13 @@ public class HoaDonGUI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/view.png"))); // NOI18N
-        jButton1.setText("Xem chi tiết");
+        jXemChiTietHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/view.png"))); // NOI18N
+        jXemChiTietHoaDon.setText("Xem chi tiết");
+        jXemChiTietHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jXemChiTietHoaDonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPContentLayout = new javax.swing.GroupLayout(jPContent);
         jPContent.setLayout(jPContentLayout);
@@ -142,13 +150,13 @@ public class HoaDonGUI extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPContentLayout.createSequentialGroup()
                         .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
                             .addGroup(jPContentLayout.createSequentialGroup()
                                 .addComponent(jBTimkiem)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)
+                                .addComponent(jXemChiTietHoaDon)
                                 .addGap(18, 18, 18)
                                 .addComponent(jBXoa)))
                         .addContainerGap())))
@@ -164,7 +172,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
                     .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBXoa)
-                        .addComponent(jButton1)))
+                        .addComponent(jXemChiTietHoaDon)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -313,7 +321,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         jPHeader.setLayout(jPHeaderLayout);
         jPHeaderLayout.setHorizontalGroup(
             jPHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLNameapp, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+            .addComponent(jLNameapp, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
         );
         jPHeaderLayout.setVerticalGroup(
             jPHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,9 +346,9 @@ public class HoaDonGUI extends javax.swing.JFrame {
         jPBodyLayout.setVerticalGroup(
             jPBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPBodyLayout.createSequentialGroup()
-                .addComponent(jPHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -352,7 +360,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private void jBBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBanHangActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new DatMonGUI().setVisible(true);
+        new DatMonAnGUI().setVisible(true);
     }//GEN-LAST:event_jBBanHangActionPerformed
 
     private void jBSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSanPhamActionPerformed
@@ -376,6 +384,20 @@ public class HoaDonGUI extends javax.swing.JFrame {
 
     private void jTHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTHoaDonMouseClicked
         //Lấy thông tin object khi click chuột vào 
+        DefaultTableModel RecordTable = (DefaultTableModel) jTHoaDon.getModel();
+        int SelectedRows = jTHoaDon.getSelectedRow();
+        hoadonDTO.maHD = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString()));
+        hoadonDTO.maKH= (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 1).toString()));
+        hoadonDTO.maNV = (Integer.parseInt(RecordTable.getValueAt(SelectedRows, 2).toString()));
+        //Xử lí ngayLap
+        try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            hoadonDTO.ngayLap = sdf.parse(RecordTable.getValueAt(SelectedRows, 3).toString());
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            // Xử lý lỗi ở đây
+        }        
+        hoadonDTO.ghiChu = (RecordTable.getValueAt(SelectedRows, 5).toString());
         
     }//GEN-LAST:event_jTHoaDonMouseClicked
 
@@ -386,7 +408,15 @@ public class HoaDonGUI extends javax.swing.JFrame {
 
     private void jBXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBXoaActionPerformed
         // TODO add your handling code here:
-
+        if (hoadonDTO.maHD == 0){
+            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
+        } else {
+            hoadonBUS.deleteHoaDon(hoadonDTO.maHD);
+            //Reset lại đối tượng chỏ trong bảng
+            hoadonDTO = new HoaDonDTO();
+            //Xóa xong phải load lại DTB lên Table để thể hiện xóa
+            upDTB();
+        }
     }//GEN-LAST:event_jBXoaActionPerformed
 
     private void jBKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhachHangActionPerformed
@@ -398,6 +428,26 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private void jBHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHoaDonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBHoaDonActionPerformed
+
+    private void jXemChiTietHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXemChiTietHoaDonActionPerformed
+        // TODO add your handling code here:
+        //Nếu chưa chọn hóa đơn nào thì thông báo lỗi
+        if(hoadonDTO.maHD==0) {
+                new MyDialog("Vui lòng chọn hóa đơn cần xem chi tiết", MyDialog.ERROR_DIALOG);
+        }
+        //Nếu đã chọn hóa đơn thì mở giao diện xem chi tiết hóa đơn
+        else {
+            //Lấy dòng được chọn trong bảng
+            int selectedRow = jTHoaDon.getSelectedRow();
+            //Lấy mã hóa đơn từ dòng được chọn
+            if (selectedRow != -1) {
+                    int maHD = Integer.parseInt(jTHoaDon.getValueAt(selectedRow, 0).toString());
+                    //Mở giao diện xem chi tiết hóa đơn
+                    new xemChiTietHoaDonGUI(maHD).setVisible(true);
+                    //Làm mới lại dữ liệu sau khi xem chi tiết hóa đơn
+            }
+        }
+    }//GEN-LAST:event_jXemChiTietHoaDonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -446,7 +496,6 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private javax.swing.JButton jBThongKe;
     private javax.swing.JButton jBTimkiem;
     private javax.swing.JButton jBXoa;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLLogo;
     private javax.swing.JLabel jLNameapp;
     private javax.swing.JLabel jLabel2;
@@ -457,6 +506,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     static javax.swing.JTable jTHoaDon;
+    private javax.swing.JButton jXemChiTietHoaDon;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }

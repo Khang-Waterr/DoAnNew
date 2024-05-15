@@ -11,6 +11,8 @@ public class SanPhamGUI extends javax.swing.JFrame {
     
     public SanPhamGUI() {
         initComponents();
+        spBUS = new SanPhamBUS();
+        spDTO = new SanPhamDTO();
         this.setLocationRelativeTo(null);
         jTSanPham.setRowHeight(30);
         upDTB();
@@ -150,7 +152,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPContentLayout.createSequentialGroup()
                         .addGroup(jPContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
                             .addGroup(jPContentLayout.createSequentialGroup()
                                 .addComponent(jBTimkiem)
                                 .addGap(18, 18, 18)
@@ -324,7 +326,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         jPHeader.setLayout(jPHeaderLayout);
         jPHeaderLayout.setHorizontalGroup(
             jPHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLNameapp, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+            .addComponent(jLNameapp, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
         );
         jPHeaderLayout.setVerticalGroup(
             jPHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,9 +351,9 @@ public class SanPhamGUI extends javax.swing.JFrame {
         jPBodyLayout.setVerticalGroup(
             jPBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPBodyLayout.createSequentialGroup()
-                .addComponent(jPHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jPContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(jPContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -363,7 +365,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
     private void jBBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBanHangActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new DatMonGUI().setVisible(true);
+        new DatMonAnGUI().setVisible(true);
         
     }//GEN-LAST:event_jBBanHangActionPerformed
 
@@ -387,25 +389,25 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
     private void jBXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBXoaActionPerformed
         // TODO add your handling code here:
-//        if (khDTO.ten == null){
-//            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
-//        } else {
-//            khBUS.xoaKhachHang(khDTO.maKH);
-//            //Reset lại đối tượng chỏ trong bảng
-//            khDTO = new KhachHangDTO();
-//            //Xóa xong phải load lại DTB lên Table để thể hiện xóa
-//            upDTB();
-//        }
+        if (spDTO.tenSP == null){
+            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
+       } else {
+            spBUS.xoaSanPham(String.valueOf(spDTO.maSP));
+            //Reset lại đối tượng chỏ trong bảng
+            spDTO = new SanPhamDTO();
+            //Xóa xong phải load lại DTB lên Table để thể hiện xóa
+            upDTB();
+        }
     }//GEN-LAST:event_jBXoaActionPerformed
 
     private void jBThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBThemActionPerformed
-        // TODO add your handling code here:
-//        addKhachHangGUI addFrame = new addKhachHangGUI();
-//        addFrame.setVisible(true);
-//        addFrame.pack();
-//        addFrame.setLocationRelativeTo(null);
-//        addFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//        
+        
+       addSanPhamGUI addFrame = new addSanPhamGUI();    
+       addFrame.setVisible(true);
+       addFrame.pack();
+       addFrame.setLocationRelativeTo(null);
+       addFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+       
     }//GEN-LAST:event_jBThemActionPerformed
 
     private void jTSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTSanPhamMouseClicked
@@ -436,16 +438,16 @@ public class SanPhamGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jBTimkiemActionPerformed
 
     private void jBSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSuaActionPerformed
-        // TODO add your handling code here:
-//        if (khDTO.ten == null){
-//            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
-//        } else {
-//            updateKhachHangGUI updateFrame = new updateKhachHangGUI();
-//            updateFrame.setVisible(true);
-//            updateFrame.pack();
-//            updateFrame.setLocationRelativeTo(null);
-//            updateFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//        }
+       
+        if (spDTO.tenSP == null){
+            new MyDialog("Chưa chọn đối tượng!", MyDialog.ERROR_DIALOG);
+        } else {
+           updateSanPhamGUI updateFrame = new updateSanPhamGUI();
+            updateFrame.setVisible(true);
+            updateFrame.pack();
+            updateFrame.setLocationRelativeTo(null);
+            updateFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        }
     }//GEN-LAST:event_jBSuaActionPerformed
 
     private void jBKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhachHangActionPerformed

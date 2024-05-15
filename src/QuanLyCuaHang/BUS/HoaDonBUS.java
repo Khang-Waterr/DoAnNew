@@ -3,9 +3,7 @@ package QuanLyCuaHang.BUS;
 import QuanLyCuaHang.DAO.HoaDonDAO;
 import QuanLyCuaHang.DTO.HoaDonDTO;
 import doanquanlycuahang.MyDialog;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class HoaDonBUS {
 
@@ -43,6 +41,23 @@ public class HoaDonBUS {
         return null;
     }
 
+    public boolean deleteHoaDon(int maHD) {
+        boolean flag = false;
+        
+        //Xóa khách hàng lưu trong cơ sở dữ liệu
+        MyDialog dlg = new MyDialog("Bạn có chắc chắn muốn xoá?", MyDialog.WARNING_DIALOG);
+        if(dlg.getAction() != MyDialog.OK_OPTION) return false;
+        flag = hoaDonDAO.deleteHoaDon(maHD);
+        //Kiểm tra cờ để xuất thông báo thích hợp
+        if (flag) {
+            new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
+        } else {
+            new MyDialog("Xoá thất bại!", MyDialog.ERROR_DIALOG);
+        }
+        return flag;
+    }
+    
+    
     
     public ArrayList<HoaDonDTO> getListHoaDonTheoGia(String min, String max) {
         try {
@@ -61,20 +76,20 @@ public class HoaDonBUS {
     }
 
     
-    public ArrayList<HoaDonDTO> getListHoaDonTheoNgay(String min, String max) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date minDate = sdf.parse(min);
-            Date maxDate = sdf.parse(max);
-
-            java.sql.Date dateMin = new java.sql.Date(minDate.getTime());
-            java.sql.Date dateMax = new java.sql.Date(maxDate.getTime());
-
-            ArrayList<HoaDonDTO> dshd = hoaDonDAO.getListHoaDon(dateMin, dateMax);
-            return dshd;
-        } catch (Exception e) {
-            new MyDialog("Hãy nhập khoảng ngày hợp lệ!", MyDialog.ERROR_DIALOG);
-        }
-        return null;
-    }
+//    public ArrayList<HoaDonDTO> getListHoaDonTheoNgay(String min, String max) {
+//        try {
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//            Date minDate = sdf.parse(min);
+//            Date maxDate = sdf.parse(max);
+//
+//            java.sql.Date dateMin = new java.sql.Date(minDate.getTime());
+//            java.sql.Date dateMax = new java.sql.Date(maxDate.getTime());
+//
+//            ArrayList<HoaDonDTO> dshd = hoaDonDAO.getListHoaDon(dateMin, dateMax);
+//            return dshd;
+//        } catch (Exception e) {
+//            new MyDialog("Hãy nhập khoảng ngày hợp lệ!", MyDialog.ERROR_DIALOG);
+//        }
+//        return null;
+//    }
 }

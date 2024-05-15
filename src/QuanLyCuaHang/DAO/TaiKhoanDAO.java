@@ -1,7 +1,5 @@
 package QuanLyCuaHang.DAO;
 
-import QuanLyCuaHang.DTO.TaiKhoanDTO;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;

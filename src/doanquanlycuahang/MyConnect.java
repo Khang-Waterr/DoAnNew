@@ -16,6 +16,7 @@ public class MyConnect {
             conn = DriverManager.getConnection(url, uname, upass);
             if (conn != null) { 
                 System.out.println("Connected to the database"); 
+                System.out.println("Application is running..."); 
             } 
             else { 
                 System.out.println("Failed to make connection!"); 

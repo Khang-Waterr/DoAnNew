@@ -31,27 +31,6 @@ public class KhachHangDAO {
         return null;
     }
 
-//    public KhachHangDTO getKhachHang(int maKH) {
-//        KhachHangDTO kh = null;
-//        try {
-//            String sql = "SELECT * FROM khachhang WHERE MaKH=?";
-//            PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
-//            prep.setInt(1, maKH);
-//            ResultSet rs = prep.executeQuery();
-//            while (rs.next()) {
-//                kh = new KhachHangDTO();
-//                kh.setMaKH(rs.getInt(1));
-//                kh.setHo(rs.getString(2));
-//                kh.setTen(rs.getString(3));
-//                kh.setGioiTinh(rs.getString(4));
-//                kh.setTongChiTieu(rs.getInt(5));
-//            }
-//        } catch (SQLException ex) {
-//            return null;
-//        }
-//        return kh;
-//    }
-
     public boolean addKhachHang(KhachHangDTO kh) {
         boolean result = false;
         try {
@@ -110,16 +89,4 @@ public class KhachHangDAO {
         return result;
     }
     
-    public int getMaKhachHangMoiNhat() {
-        try {
-            String sql = "SELECT MAX(MaKH) FROM khachhang";
-            Statement st = MyConnect.conn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next())
-                return rs.getInt(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
 }

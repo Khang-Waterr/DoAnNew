@@ -31,16 +31,12 @@ public class KhachHangBUS {
         return dskh;
     }
     
-    public int getMaKhachHangMoiNhat(){
-        return khachHangDAO.getMaKhachHangMoiNhat();
-    }
     
     
-    public boolean themKhachHang(String ho, String ten, String gioitinh) {
-        //Kiểm tra lấy mã được chưa
-        int result = khachHangDAO.getMaKhachHangMoiNhat();
-        if (result == -1) {
-            new MyDialog("Lấy mã thất bại!", MyDialog.ERROR_DIALOG);
+    public boolean themKhachHang(String maKH, String ho, String ten, String gioitinh) {
+        //Kiểm tra đã nhập mã chưa
+        if (maKH.trim().equals("")) {
+            new MyDialog("Không được để trống mã!", MyDialog.ERROR_DIALOG);
             return false;
         }
         
@@ -49,9 +45,16 @@ public class KhachHangBUS {
             new MyDialog("Không được để trống tên!", MyDialog.ERROR_DIALOG);
             return false;
         }
+        //Kiểm tra số nhập có hợp lệ không
+        try {
+            Integer.parseInt(maKH);
+        } catch (NumberFormatException e) {
+            new MyDialog("Mã không hợp lệ!", MyDialog.ERROR_DIALOG);
+            return false;
+        }
         
         //Tạo biến khách hàng để thêm
-        KhachHangDTO kh = new KhachHangDTO(result+1, ho, ten, gioitinh, 0);
+        KhachHangDTO kh = new KhachHangDTO(Integer.parseInt(maKH), ho, ten, gioitinh, 0);
         
         //Thêm và tạo cờ kiểm tra đã thêm thành công hay chưa
         boolean flag = khachHangDAO.addKhachHang(kh);
@@ -66,8 +69,7 @@ public class KhachHangBUS {
     }
 
     
-    public boolean suaKhachHang(String makh, String ho, String ten, String gioiTinh) { 
-        
+    public boolean suaKhachHang(String makh, String ho, String ten, String gioiTinh) {   
         //Kiểm tra đã nhập tên chưa
         if (ten.trim().equals("")) {
             new MyDialog("Không được để trống tên!", MyDialog.ERROR_DIALOG);

@@ -51,7 +51,7 @@ public class HoaDonDAO {
         return result;
     }
 
-    //-1 là lấy thất bại
+    //-1 là lấy thất bại, lấy để thêm tự động hóa đơn trong GUI
     public int getMaHoaDonMoiNhat() {
         try {
             String sql = "SELECT MAX(maHD) FROM hoadon";
@@ -64,32 +64,46 @@ public class HoaDonDAO {
         }
         return -1;
     }
-
     
-    public ArrayList<HoaDonDTO> getListHoaDon(Date dateMin, Date dateMax) {
+    public boolean deleteHoaDon(int maHD) {
+        boolean result = false;
         try {
-            String sql = "SELECT * FROM hoadon WHERE NgayLap BETWEEN CAST(? AS DATE) AND CAST(? AS DATE)";
-            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-            pre.setDate(1, dateMin);
-            pre.setDate(2, dateMax);
-            ResultSet rs = pre.executeQuery();
-
-            ArrayList<HoaDonDTO> dshd = new ArrayList<>();
-
-            while (rs.next()) {
-                HoaDonDTO hd = new HoaDonDTO();
-                hd.setMaHD(rs.getInt(1));
-                hd.setMaKH(rs.getInt(2));
-                hd.setMaNV(rs.getInt(3));
-                hd.setNgayLap(rs.getDate(4));
-                hd.setTongTien(rs.getInt(5));
-                hd.setGhiChu(rs.getString(6));
-                dshd.add(hd);
-            }
-            return dshd;
-        } catch (Exception e) {
-            e.printStackTrace();
+            String sql = "Delete from HOADON WHERE maHD=?";
+            PreparedStatement prep = MyConnect.conn.prepareStatement(sql);
+            prep.setInt(1, maHD);
+            result = prep.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            return false;
         }
-        return null;
+        return result;
     }
+    
+
+    //Có hàm tìm khỏi làm cái này
+//    public ArrayList<HoaDonDTO> getListHoaDon(Date dateMin, Date dateMax) {
+//        try {
+//            String sql = "SELECT * FROM hoadon WHERE NgayLap BETWEEN CAST(? AS DATE) AND CAST(? AS DATE)";
+//            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
+//            pre.setDate(1, dateMin);
+//            pre.setDate(2, dateMax);
+//            ResultSet rs = pre.executeQuery();
+//
+//            ArrayList<HoaDonDTO> dshd = new ArrayList<>();
+//
+//            while (rs.next()) {
+//                HoaDonDTO hd = new HoaDonDTO();
+//                hd.setMaHD(rs.getInt(1));
+//                hd.setMaKH(rs.getInt(2));
+//                hd.setMaNV(rs.getInt(3));
+//                hd.setNgayLap(rs.getDate(4));
+//                hd.setTongTien(rs.getInt(5));
+//                hd.setGhiChu(rs.getString(6));
+//                dshd.add(hd);
+//            }
+//            return dshd;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 }

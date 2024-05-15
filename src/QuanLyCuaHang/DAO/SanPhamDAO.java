@@ -118,15 +118,16 @@ public class SanPhamDAO {
 
     public boolean themSanPham(SanPhamDTO sp) {
         try {
-            String sql = "INSERT INTO SanPham(TenSP, MaLoai, SoLuong, DonViTinh, HinhAnh, DonGia) "
-                    + "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO SanPham(MaSP, TenSP, MaLoai, SoLuong, DonViTinh, HinhAnh, DonGia) "
+                    + "VALUES (?, ?, ?, ?, ?, ?,?)";
             PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
-            pre.setString(1, sp.getTenSP());
-            pre.setInt(2, sp.getMaLoai());
-            pre.setInt(3, sp.getSoLuong());
-            pre.setString(4, sp.getDonViTinh());
-            pre.setString(5, sp.getHinhAnh());
-            pre.setInt(6, sp.getDonGia());
+            pre.setInt(1, sp.getMaSP());
+            pre.setString(2, sp.getTenSP());
+            pre.setInt(3, sp.getMaLoai());
+            pre.setInt(4, 0);
+            pre.setString(5, sp.getDonViTinh());
+            pre.setString(6, "");
+            pre.setInt(7, sp.getDonGia());
 
             pre.execute();
             return true;
@@ -187,5 +188,18 @@ public class SanPhamDAO {
             e.printStackTrace();
         }
         return false;
+    }
+    
+      public int getMaSPMoiNhat() {
+        try {
+            String sql = "SELECT MAX(MaSP) FROM sanpham";
+            Statement st = MyConnect.conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next())
+                return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

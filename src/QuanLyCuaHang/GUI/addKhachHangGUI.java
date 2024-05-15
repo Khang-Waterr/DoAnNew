@@ -25,6 +25,8 @@ public class addKhachHangGUI extends javax.swing.JFrame {
         jTGioiTinh = new javax.swing.JTextField();
         jLGioiTinh = new javax.swing.JLabel();
         jLHeader = new javax.swing.JLabel();
+        jLSDT = new javax.swing.JLabel();
+        jTSDT = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Thêm Khách Hàng");
@@ -34,6 +36,12 @@ public class addKhachHangGUI extends javax.swing.JFrame {
 
         jLTen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLTen.setText("Tên:");
+
+        jTHo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTHoActionPerformed(evt);
+            }
+        });
 
         jBLuu.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBLuu.setText("Lưu");
@@ -49,56 +57,65 @@ public class addKhachHangGUI extends javax.swing.JFrame {
         jLHeader.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLHeader.setText("Thông Tin Khách hàng");
 
+        jLSDT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLSDT.setText("SĐT-Mã KH:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(97, 97, 97)
                 .addComponent(jLHeader)
-                .addGap(94, 94, 94))
+                .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLHo)
-                                    .addGap(91, 91, 91))
-                                .addComponent(jLTen))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLGioiTinh)
-                                .addGap(49, 49, 49)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLHo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLTen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLGioiTinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTTen)
                             .addComponent(jTHo)
-                            .addComponent(jTGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTSDT, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(jTGioiTinh))
                         .addGap(54, 54, 54))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jBLuu)
-                        .addGap(129, 129, 129))))
+                        .addGap(130, 130, 130))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLHeader)
+                .addGap(20, 20, 20)
+                .addComponent(jLHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLHo)
-                    .addComponent(jTHo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLSDT))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTHo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLHo))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLTen))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLTen)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLGioiTinh))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLGioiTinh))
+                    .addComponent(jTGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jBLuu)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,10 +123,10 @@ public class addKhachHangGUI extends javax.swing.JFrame {
 
     private void jBLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLuuActionPerformed
         // TODO add your handling code here:
-        flag = khBUS.themKhachHang(jTHo.getText(),jTTen.getText(), jTGioiTinh.getText());
+        flag = khBUS.themKhachHang(jTSDT.getText(),jTHo.getText(),jTTen.getText(), jTGioiTinh.getText());
         if (flag == true) {
                 KhachHangGUI.AddRowToJTable(new Object[]{
-                    khBUS.getMaKhachHangMoiNhat(),
+                    jTSDT.getText(),
                     jTHo.getText(),
                     jTTen.getText(),
                     jTGioiTinh.getText(),
@@ -118,6 +135,10 @@ public class addKhachHangGUI extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jBLuuActionPerformed
+
+    private void jTHoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTHoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTHoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -156,9 +177,11 @@ public class addKhachHangGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLGioiTinh;
     private javax.swing.JLabel jLHeader;
     private javax.swing.JLabel jLHo;
+    private javax.swing.JLabel jLSDT;
     private javax.swing.JLabel jLTen;
     private javax.swing.JTextField jTGioiTinh;
     private javax.swing.JTextField jTHo;
+    private javax.swing.JTextField jTSDT;
     private javax.swing.JTextField jTTen;
     // End of variables declaration//GEN-END:variables
 }
