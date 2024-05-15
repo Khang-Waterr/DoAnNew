@@ -8,8 +8,7 @@ import doanquanlycuahang.MyDialog;
 import java.util.ArrayList;
 
 public class SanPhamBUS {
-
-    public ArrayList<SanPhamDTO> listSanPham = null;
+    public ArrayList<SanPhamDTO> listSanPham = new ArrayList<>();
     public SanPhamDAO spDAO = new SanPhamDAO();
 
 

@@ -15,8 +15,10 @@ import javax.swing.table.DefaultTableModel;
 public class HoaDonGUI extends javax.swing.JFrame {
     public static HoaDonBUS hoadonBUS = new HoaDonBUS(); //Để thao tác với bảng dữ liệu hóa đơn
     public static HoaDonDTO hoadonDTO = new HoaDonDTO(); //Biến này đại diện cho khách hàng được chọn trong table
+    public static String role;
     
-    public HoaDonGUI() {
+    public HoaDonGUI(String role) {
+        this.role = role;
         initComponents();
         hoadonDTO = new HoaDonDTO();
         hoadonBUS = new HoaDonBUS();
@@ -69,6 +71,43 @@ public class HoaDonGUI extends javax.swing.JFrame {
         jBHoaDon = new javax.swing.JButton();
         jPHeader = new javax.swing.JPanel();
         jLNameapp = new javax.swing.JLabel();
+
+        switch (role) {
+            case "Admin":
+            case "Quan Ly":
+                // Show all buttons
+                jBNhanVien.setVisible(true);
+                jBKhuyenMai.setVisible(true);
+                jBSanPham.setVisible(true);
+                jBBanHang.setVisible(true);
+                jBKhachHang.setVisible(true);
+                jBNhapHang.setVisible(true);
+                jBHoaDon.setVisible(true);
+                jBThongKe.setVisible(true);
+                break;
+            case "Nhan Vien":
+                // Show only Đặt Món (jBBanHang), Sản Phẩm (jBSanPham), Hóa Đơn (jBKhuyenMai), Nhập Hàng (jBNhapHang)
+                jBNhanVien.setVisible(false);
+                jBKhuyenMai.setVisible(false);
+                jBSanPham.setVisible(true);
+                jBBanHang.setVisible(true);
+                jBKhachHang.setVisible(false);
+                jBNhapHang.setVisible(true);
+                jBHoaDon.setVisible(true);
+                jBThongKe.setVisible(false);
+                break;
+            default:
+                // Hide all buttons
+                jBNhanVien.setVisible(false);
+                jBKhuyenMai.setVisible(false);
+                jBSanPham.setVisible(false);
+                jBBanHang.setVisible(false);
+                jBKhachHang.setVisible(false);
+                jBNhapHang.setVisible(false);
+                jBHoaDon.setVisible(false);
+                jBThongKe.setVisible(false);
+                break;
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mác Đô Nan");
@@ -360,13 +399,13 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private void jBBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBanHangActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new DatMonAnGUI().setVisible(true);
+        new DatMonAnGUI(role).setVisible(true);
     }//GEN-LAST:event_jBBanHangActionPerformed
 
     private void jBSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSanPhamActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new SanPhamGUI().setVisible(true);
+        new SanPhamGUI(role).setVisible(true);
     }//GEN-LAST:event_jBSanPhamActionPerformed
 
     private void jBKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhuyenMaiActionPerformed
@@ -375,7 +414,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
 
     private void jBNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNhanVienActionPerformed
         this.dispose();
-        new NhanVienGUI().setVisible(true);
+        new NhanVienGUI(role).setVisible(true);
     }//GEN-LAST:event_jBNhanVienActionPerformed
 
     private void txtTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimkiemActionPerformed
@@ -422,7 +461,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private void jBKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKhachHangActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new KhachHangGUI().setVisible(true);
+        new KhachHangGUI(role).setVisible(true);
     }//GEN-LAST:event_jBKhachHangActionPerformed
 
     private void jBHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHoaDonActionPerformed
@@ -480,7 +519,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HoaDonGUI().setVisible(true);
+                new HoaDonGUI(role).setVisible(true);
             }
         });
     }
